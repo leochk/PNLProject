@@ -13,6 +13,27 @@
 
 #include "ouichefs.h"
 
+int numberOfFilesSharingMyDir(struct file *file) {
+	struct inode *dir = file->f_path.dentry->d_parent->d_inode;
+	struct ouichefs_inode_info *ci = OUICHEFS_INODE(dir);
+	struct super_block *sb = dir->i_sb;
+	struct buffer_head *bh = NULL;
+	struct ouichefs_dir_block *dblock = NULL;
+	struct ouichefs_file *f = NULL;
+	int i;
+	int cpt = 0;
+
+	bh = sb_bread(sb, ci->index_block);
+	dblock = (struct ouichefs_dir_block *)bh->b_data;
+	for (i = 0; i < OUICHEFS_MAX_SUBFILES; i++) {
+		f = &dblock->files[i];
+		if (!f->inode)
+			break;
+		cpt++;
+	}
+	return cpt;
+}
+
 /*
  * Iterate over the files contained in dir and commit them in ctx.
  * This function is called by the VFS while ctx->pos changes.

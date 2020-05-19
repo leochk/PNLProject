@@ -85,6 +85,9 @@ struct ouichefs_dir_block {
 	} files[OUICHEFS_MAX_SUBFILES];
 };
 
+/* utils functions */
+int numberOfFilesSharingMyDir(struct file *file);
+
 /* superblock functions */
 int ouichefs_fill_super(struct super_block *sb, void *data, int silent);
 
