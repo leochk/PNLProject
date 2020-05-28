@@ -99,7 +99,8 @@ static int ouichefs_write_begin(struct file *file,
 				struct page **pagep, void **fsdata)
 {
 	static struct file *fmem = NULL;
-	static int nbFiles;
+	static int nbFiles, percent;
+	struct dentry *root = get_root_dentry(file->f_path.dentry);
 
 	struct ouichefs_sb_info *sbi = OUICHEFS_SB(file->f_inode->i_sb);
 	int err;
@@ -109,9 +110,19 @@ static int ouichefs_write_begin(struct file *file,
 		fmem = file;
 		pr_info("creating %s\n", file->f_path.dentry->d_name.name);
 
+		percent = (int)(sbi->nr_free_blocks*100/sbi->nr_blocks);
+		pr_info("remaining block in percent: %d \n", percent);
+
+		while (percent < X) {
+			pr_info("critic space remaining : a file is going to be removed");
+			remove_lru_file(root);
+			percent = (int)(sbi->nr_free_blocks*100/sbi->nr_blocks);
+			pr_info("block in percent after removing: %d \n", percent);
+		}
+
 		nbFiles = nb_file_in_dir(file->f_path.dentry->d_parent);
 		if (nbFiles >= OUICHEFS_MAX_SUBFILES) {
-			pr_info("a file is going to be removed");
+			pr_info("128 files in dir : a file is going to be removed");
 			remove_LRU_file_of_dir(file->f_path.dentry->d_parent, nbFiles);
 		}
 
@@ -128,13 +139,14 @@ static int ouichefs_write_begin(struct file *file,
 	if (nr_allocs > sbi->nr_free_blocks)
 		return -ENOSPC;
 
+	retry:
 	/* prepare the write */
 	err = block_write_begin(mapping, pos, len, flags, pagep,
 				ouichefs_file_get_block);
 	/* if this failed, reclaim newly allocated blocks */
 	if (err < 0) {
-		pr_err("%s:%d: newly allocated blocks reclaim not implemented yet\n",
-		       __func__, __LINE__);
+		remove_lru_file(root);
+		goto retry;
 	}
 	return err;
 }
