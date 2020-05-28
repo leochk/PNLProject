@@ -10,13 +10,15 @@
 #include <linux/kernel.h>
 #include <linux/fs.h>
 #include <linux/buffer_head.h>
+#include <linux/slab.h>
 
 #include "ouichefs.h"
 
-int numberOfFilesSharingMyDir(struct file *file) {
-	struct inode *dir = file->f_path.dentry->d_parent->d_inode;
-	struct ouichefs_inode_info *ci = OUICHEFS_INODE(dir);
-	struct super_block *sb = dir->i_sb;
+int nb_file_in_dir(struct dentry *dir)
+{
+	struct inode *idir = dir->d_inode;
+	struct ouichefs_inode_info *ci = OUICHEFS_INODE(idir);
+	struct super_block *sb = idir->i_sb;
 	struct buffer_head *bh = NULL;
 	struct ouichefs_dir_block *dblock = NULL;
 	struct ouichefs_file *f = NULL;
@@ -32,6 +34,73 @@ int numberOfFilesSharingMyDir(struct file *file) {
 		cpt++;
 	}
 	return cpt;
+}
+
+int remove_LRU_file_of_dir(struct dentry *dir, int nbFiles)
+{
+	struct ouichefs_inode_info *ci = OUICHEFS_INODE(dir->d_inode);
+	struct super_block *sb = dir->d_inode->i_sb;
+	struct buffer_head *bh = NULL;
+	struct ouichefs_dir_block *dblock = NULL;
+	struct ouichefs_file *f = NULL;
+	struct inode *inode = NULL;
+	char **raw_path_files;
+	int i, ret;
+
+	pr_info("files in directory %s: %d\n", dir->d_name.name, nbFiles);
+
+	raw_path_files = kmalloc(nbFiles * sizeof(char *), GFP_KERNEL);
+	for (i = 0; i < nbFiles; i++)
+		 raw_path_files[i] = kmalloc(OUICHEFS_MAX_PATH * sizeof(char *), GFP_KERNEL);
+
+	get_raw_path_of_files(dir, raw_path_files);
+
+	bh = sb_bread(sb, ci->index_block);
+	dblock = (struct ouichefs_dir_block *)bh->b_data;
+	for (i = 0; i < OUICHEFS_MAX_SUBFILES; i++) {
+		f = &dblock->files[i];
+		if (!f->inode)
+			break;
+		inode = ouichefs_iget(sb, f->inode);
+
+		pr_info("file %s created on %lld.%ld\n",
+		raw_path_files[i], inode->i_mtime.tv_sec, inode->i_mtime.tv_nsec);
+
+		iput(inode);
+
+	}
+	brelse(bh);
+
+	return ret;
+}
+
+void get_raw_path_of_files(struct dentry *dir, char **paths)
+{
+	struct ouichefs_inode_info *ci = OUICHEFS_INODE(dir->d_inode);
+	struct super_block *sb = dir->d_inode->i_sb;
+	struct buffer_head *bh = NULL;
+	struct ouichefs_dir_block *dblock = NULL;
+	struct ouichefs_file *f = NULL;
+	struct inode *inode = NULL;
+	char *pathdir, *tmp = kmalloc(PATH_MAX, GFP_KERNEL);
+	char *pathfile;
+	int i;
+
+	bh = sb_bread(sb, ci->index_block);
+	dblock = (struct ouichefs_dir_block *)bh->b_data;
+	for (i = 0; i < OUICHEFS_MAX_SUBFILES; i++) {
+		f = &dblock->files[i];
+		if (!f->inode)
+			break;
+		inode = ouichefs_iget(sb, f->inode);
+		pathdir = dentry_path_raw(dir, tmp, PATH_MAX);
+		pathfile = kmalloc(OUICHEFS_MAX_PATH, GFP_KERNEL);
+		strcpy(pathfile, pathdir);
+		strcat(pathfile, "/");
+		strcat(pathfile, f->filename);
+		strcpy(paths[i], pathfile);
+		iput(inode);
+	}
 }
 
 /*

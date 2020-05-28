@@ -12,6 +12,7 @@
 #include <linux/fs.h>
 #include <linux/buffer_head.h>
 #include <linux/mpage.h>
+#include <linux/slab.h>
 
 #include "ouichefs.h"
 #include "bitmap.h"
@@ -97,9 +98,21 @@ static int ouichefs_write_begin(struct file *file,
 				unsigned int len, unsigned int flags,
 				struct page **pagep, void **fsdata)
 {
+	static struct file *fmem = NULL;
+	static int nbFiles;
+
 	struct ouichefs_sb_info *sbi = OUICHEFS_SB(file->f_inode->i_sb);
 	int err;
 	uint32_t nr_allocs = 0;
+
+	if (fmem == NULL || fmem != file) {
+		fmem = file;
+		pr_info("treating %s\n", file->f_path.dentry->d_name.name);
+
+		nbFiles = nb_file_in_dir(file->f_path.dentry->d_parent);
+		remove_LRU_file_of_dir(file->f_path.dentry->d_parent, nbFiles);
+
+	}
 
 	/* Check if the write can be completed (enough space?) */
 	if (pos + len > OUICHEFS_MAX_FILESIZE)

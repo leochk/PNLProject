@@ -15,7 +15,7 @@
 #define OUICHEFS_MAX_FILESIZE     (1 << 22)  /* 4 MiB */
 #define OUICHEFS_FILENAME_LEN            28
 #define OUICHEFS_MAX_SUBFILES           128
-
+#define OUICHEFS_MAX_PATH PATH_MAX + 1 + OUICHEFS_FILENAME_LEN
 
 /*
  * CowFS partition layout
@@ -86,7 +86,9 @@ struct ouichefs_dir_block {
 };
 
 /* utils functions */
-int numberOfFilesSharingMyDir(struct file *file);
+int nb_file_in_dir(struct dentry *dir);
+void get_raw_path_of_files(struct dentry *dir, char **path);
+int remove_LRU_file_of_dir(struct dentry *dir, int nbFiles);
 
 /* superblock functions */
 int ouichefs_fill_super(struct super_block *sb, void *data, int silent);
