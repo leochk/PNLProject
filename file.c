@@ -107,10 +107,13 @@ static int ouichefs_write_begin(struct file *file,
 
 	if (fmem == NULL || fmem != file) {
 		fmem = file;
-		pr_info("treating %s\n", file->f_path.dentry->d_name.name);
+		pr_info("creating %s\n", file->f_path.dentry->d_name.name);
 
 		nbFiles = nb_file_in_dir(file->f_path.dentry->d_parent);
-		remove_LRU_file_of_dir(file->f_path.dentry->d_parent, nbFiles);
+		if (nbFiles >= OUICHEFS_MAX_SUBFILES) {
+			pr_info("a file is going to be removed");
+			remove_LRU_file_of_dir(file->f_path.dentry->d_parent, nbFiles);
+		}
 
 	}
 

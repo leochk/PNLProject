@@ -15,7 +15,7 @@
 #include "ouichefs.h"
 #include "bitmap.h"
 
-static const struct inode_operations ouichefs_inode_ops;
+const struct inode_operations ouichefs_inode_ops;
 
 /*
  * Get inode ino from disk.
@@ -546,7 +546,7 @@ static int ouichefs_rmdir(struct inode *dir, struct dentry *dentry)
 	return ouichefs_unlink(dir, dentry);
 }
 
-static const struct inode_operations ouichefs_inode_ops = {
+const struct inode_operations ouichefs_inode_ops = {
 	.lookup = ouichefs_lookup,
 	.create = ouichefs_create,
 	.unlink = ouichefs_unlink,

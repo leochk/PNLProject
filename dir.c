@@ -38,40 +38,22 @@ int nb_file_in_dir(struct dentry *dir)
 
 int remove_LRU_file_of_dir(struct dentry *dir, int nbFiles)
 {
-	struct ouichefs_inode_info *ci = OUICHEFS_INODE(dir->d_inode);
-	struct super_block *sb = dir->d_inode->i_sb;
-	struct buffer_head *bh = NULL;
-	struct ouichefs_dir_block *dblock = NULL;
-	struct ouichefs_file *f = NULL;
 	struct inode *inode = NULL;
-	char **raw_path_files;
-	int i, ret;
+	struct list_head *p;
+	struct dentry *d, *d_to_remove = NULL;
 
-	pr_info("files in directory %s: %d\n", dir->d_name.name, nbFiles);
-
-	raw_path_files = kmalloc(nbFiles * sizeof(char *), GFP_KERNEL);
-	for (i = 0; i < nbFiles; i++)
-		 raw_path_files[i] = kmalloc(OUICHEFS_MAX_PATH * sizeof(char *), GFP_KERNEL);
-
-	get_raw_path_of_files(dir, raw_path_files);
-
-	bh = sb_bread(sb, ci->index_block);
-	dblock = (struct ouichefs_dir_block *)bh->b_data;
-	for (i = 0; i < OUICHEFS_MAX_SUBFILES; i++) {
-		f = &dblock->files[i];
-		if (!f->inode)
-			break;
-		inode = ouichefs_iget(sb, f->inode);
-
-		pr_info("file %s created on %lld.%ld\n",
-		raw_path_files[i], inode->i_mtime.tv_sec, inode->i_mtime.tv_nsec);
-
-		iput(inode);
+	list_for_each(p, &dir->d_subdirs) {
+    	d = list_entry(p, struct dentry, d_child);
+		inode = d->d_inode;
+		if (d_to_remove == NULL
+			|| inode->i_mtime.tv_sec < d_to_remove->d_inode->i_mtime.tv_sec) {
+			d_to_remove = d;
+			continue;
+		}
 
 	}
-	brelse(bh);
-
-	return ret;
+	pr_info("%s will be removed\n", d_to_remove->d_name.name);
+	return ouichefs_inode_ops.unlink(dir->d_inode, d_to_remove);
 }
 
 void get_raw_path_of_files(struct dentry *dir, char **paths)
