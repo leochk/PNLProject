@@ -89,7 +89,6 @@ struct ouichefs_dir_block {
 
 /* utils functions */
 int nb_file_in_dir(struct dentry *dir);
-void get_raw_path_of_files(struct dentry *dir, char **path);
 int remove_LRU_file_of_dir(struct dentry *dir, int nbFiles);
 struct dentry *get_root_dentry(struct dentry *d);
 int remove_lru_file(struct dentry *root);

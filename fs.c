@@ -50,6 +50,24 @@ static struct file_system_type ouichefs_file_system_type = {
 	.next = NULL,
 };
 
+static ssize_t ouichefs_show(struct kobject *kobj,
+                            struct kobj_attribute *attr,
+                            char *buf)
+{
+    return snprintf(buf, PAGE_SIZE, "%s", "Nothing to do for now.\n");
+}
+
+static ssize_t ouichefs_store(struct kobject *kobj,
+                            struct kobj_attribute *attr,
+                            const char *buf, size_t count)
+{
+    return count;
+}
+
+struct kobject *ouichefs_kobj;
+struct kobj_attribute ouichefs_attribute =
+    __ATTR_RW(ouichefs);
+
 static int __init ouichefs_init(void)
 {
 	int ret;
@@ -66,6 +84,14 @@ static int __init ouichefs_init(void)
 		goto end;
 	}
 
+	ouichefs_kobj = kobject_create_and_add("ouichefs", kernel_kobj);
+    if (!ouichefs_kobj)
+        return -ENOMEM;
+
+    ret = sysfs_create_file(ouichefs_kobj, &ouichefs_attribute.attr);
+    if (ret)
+        kobject_put(ouichefs_kobj);
+
 	pr_info("module loaded\n");
 end:
 	return ret;
@@ -80,6 +106,8 @@ static void __exit ouichefs_exit(void)
 		pr_err("unregister_filesystem() failed\n");
 
 	ouichefs_destroy_inode_cache();
+
+	kobject_put(ouichefs_kobj);
 
 	pr_info("module unloaded\n");
 }
