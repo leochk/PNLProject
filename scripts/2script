@@ -8,10 +8,12 @@ mount -o loop ~/share/PNLProject/mkfs/test.img /mnt/PNLProject
 mkdir /mnt/PNLProject/dir/
 mkdir /mnt/PNLProject/dir/dir2/
 
-for n in {1..50}; do
+for n in {1..100}; do
     dd if=/dev/urandom of=/mnt/PNLProject/dir/dir2/$( printf %03d "$n" ).txt bs=1M count=$(( ( RANDOM % 4 )  + 1 ));
-sleep 0.25;
+    sync;
 done
+
+ls /mnt/PNLProject/dir/dir2
 
 rm -rf /mnt/PNLProject/*
 umount /mnt/PNLProject

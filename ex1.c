@@ -40,9 +40,9 @@ int remove_LRU_file_of_dir(struct dentry *dir, int nbFiles)
     	d = list_entry(p, struct dentry, d_child);
 		inode = d->d_inode;
 		if (d_to_remove == NULL
-			|| inode->i_mtime.tv_sec <= d_to_remove->d_inode->i_mtime.tv_sec) {
-			d_to_remove = d;
-			continue;
+			|| inode->i_mtime.tv_sec < d_to_remove->d_inode->i_mtime.tv_sec) {
+				if ((inode->i_state & I_DIRTY) == 0 && inode->i_blocks > 0)
+					d_to_remove = d;
 		}
 
 	}
@@ -65,9 +65,9 @@ void __remove_lru_file(struct dentry *root, struct dentry **d_to_remove)
 
 		if ((d->d_flags & DCACHE_DIRECTORY_TYPE) == 0 && !IS_ROOT(d)) {
 			if (*d_to_remove == NULL
-				|| inode->i_mtime.tv_sec <= (*d_to_remove)->d_inode->i_mtime.tv_sec) {
-				*d_to_remove = d;
-				continue;
+				|| inode->i_mtime.tv_sec < (*d_to_remove)->d_inode->i_mtime.tv_sec) {
+					if ((inode->i_state & I_DIRTY) == 0 && inode->i_blocks > 0)
+						*d_to_remove = d;
 			}
 		}
 		__remove_lru_file(d, d_to_remove);
@@ -80,12 +80,13 @@ int remove_lru_file(struct dentry *root)
 	struct dentry *d_to_remove = NULL;
 
 	__remove_lru_file(root, &d_to_remove);
-	pr_info("%s in directory %s will be removed\n", d_to_remove->d_name.name, d_to_remove->d_parent->d_name.name);
+	if (d_to_remove == NULL) return 1;
 
+	pr_info("%s in directory %s will be removed\n", d_to_remove->d_name.name, d_to_remove->d_parent->d_name.name);
     inode_lock(d_to_remove->d_parent->d_inode);
     ret = ouichefs_inode_ops.unlink(d_to_remove->d_parent->d_inode, d_to_remove);
     inode_unlock(d_to_remove->d_parent->d_inode);
-    
+
     return ret;
 }
 
