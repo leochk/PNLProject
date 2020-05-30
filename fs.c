@@ -6,10 +6,17 @@
  */
 
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
+#define REMOVE1 "clear_a_file"
+#define REMOVE2 "clear_a_file_in_dir"
 
 #include <linux/module.h>
 #include <linux/kernel.h>
 #include <linux/fs.h>
+#include <linux/slab.h>
+#include <linux/path.h>
+#include <linux/namei.h>
+#include <linux/namei.h>
+
 
 #include "ouichefs.h"
 
@@ -50,23 +57,74 @@ static struct file_system_type ouichefs_file_system_type = {
 	.next = NULL,
 };
 
+/*
+ *	show on cat /sys/kernel/ouichefs/ouichefs
+ */
 static ssize_t ouichefs_show(struct kobject *kobj,
-                            struct kobj_attribute *attr,
-                            char *buf)
+						struct kobj_attribute *attr,
+						char *buf)
 {
-    return snprintf(buf, PAGE_SIZE, "%s", "Nothing to do for now.\n");
+	return snprintf(buf, PAGE_SIZE, "%s", "Nothing to do for now.\n");
 }
 
+/*
+ *	store on echo -n buf > /sys/kernel/ouichefs/ouichefs
+ */
 static ssize_t ouichefs_store(struct kobject *kobj,
-                            struct kobj_attribute *attr,
-                            const char *buf, size_t count)
+						struct kobj_attribute *attr,
+						const char *buf, size_t count)
 {
-    return count;
+	char *token, *cur = buf;
+	char const *delim = " ";
+	char *function = NULL, *dir = NULL;
+	struct file *f = NULL;
+	struct dentry *root = NULL;
+	int i = 0;
+
+	while ((token = strsep(&cur, delim))) {
+		if (i == 1)
+			dir = token;
+		if (i == 0)
+			function = token;
+		i++;
+	}
+
+	if (i != 2) {
+		pr_err("usage: <function> <dir_ouichefs>");
+		return -1;
+	}
+
+	f = filp_open(dir, O_DIRECTORY, 0);
+	if (IS_ERR(f)) {
+		pr_err("%s does not exist", dir);
+		filp_close(f, NULL);
+		return -1;
+	}
+
+	if (strcmp(function, REMOVE1) == 0) {
+		pr_info("%s\n", REMOVE1);
+		root = get_root_dentry(f->f_path.dentry);
+		pr_info("root = %s\n", root->d_name.name);
+		pr_info("%d\n", ouichefs_politic.clear_a_file(root));
+	} else if (strcmp(function, REMOVE2) == 0) {
+		pr_info("%s\n", REMOVE2);
+		ouichefs_politic.clear_a_file_in_dir
+			(f->f_path.dentry, nb_file_in_dir(f->f_path.dentry));
+	} else {
+		pr_err("function %s not supported", function);
+		filp_close(f, NULL);
+		return -1;
+	}
+
+	filp_close(f, NULL);
+	return count;
+
+
 }
 
 struct kobject *ouichefs_kobj;
 struct kobj_attribute ouichefs_attribute =
-    __ATTR_RW(ouichefs);
+	__ATTR_RW(ouichefs);
 
 static int __init ouichefs_init(void)
 {
@@ -85,12 +143,12 @@ static int __init ouichefs_init(void)
 	}
 
 	ouichefs_kobj = kobject_create_and_add("ouichefs", kernel_kobj);
-    if (!ouichefs_kobj)
-        return -ENOMEM;
+	if (!ouichefs_kobj)
+		return -ENOMEM;
 
-    ret = sysfs_create_file(ouichefs_kobj, &ouichefs_attribute.attr);
-    if (ret)
-        kobject_put(ouichefs_kobj);
+	ret = sysfs_create_file(ouichefs_kobj, &ouichefs_attribute.attr);
+	if (ret)
+		kobject_put(ouichefs_kobj);
 
 	pr_info("module loaded\n");
 end:

@@ -17,6 +17,8 @@
 #include "ouichefs.h"
 #include "bitmap.h"
 
+extern struct ouichefs_politic ouichefs_politic;
+
 /*
  * Map the buffer_head passed in argument with the iblock-th block of the file
  * represented by inode. If the requested block is not allocated and create is
@@ -98,7 +100,7 @@ static int ouichefs_write_begin(struct file *file,
 				unsigned int len, unsigned int flags,
 				struct page **pagep, void **fsdata)
 {
-	static struct file *fmem = NULL;
+	static struct file *fmem = -1;
 	int nbFiles, percent;
 	struct dentry *root = get_root_dentry(file->f_path.dentry);
 
@@ -106,23 +108,28 @@ static int ouichefs_write_begin(struct file *file,
 	int err;
 	uint32_t nr_allocs = 0;
 
-	if (fmem == NULL || fmem != file) {
+	/* each time we encounter a new file */
+	if (fmem == -1 || fmem != file) {
 		fmem = file;
 		pr_info("creating %s\n", file->f_path.dentry->d_name.name);
 
+		/* check number of file in file directory */
 		nbFiles = nb_file_in_dir(file->f_path.dentry->d_parent);
+		/* do a clean if needed */
 		while (nbFiles >= OUICHEFS_MAX_SUBFILES) {
-			//pr_info("128 files in dir : a file is going to be removed");
-			remove_LRU_file_of_dir(file->f_path.dentry->d_parent, nbFiles);
+			pr_info("128 files in dir : a file is going to be removed");
+			ouichefs_politic.clear_a_file_in_dir
+				(file->f_path.dentry->d_parent, nbFiles);
 			nbFiles = nb_file_in_dir(file->f_path.dentry->d_parent);
-
 		}
 
+		/* check the pourcentage of block remaining in superblock */
 		percent = (int)(sbi->nr_free_blocks*100/sbi->nr_blocks);
-
+		/* do a clean if needed */
 		while (percent < X) {
 			pr_info("blocks remaining under %d percent !", X);
-			remove_lru_file(get_root_dentry(file->f_path.dentry));
+			ouichefs_politic.clear_a_file
+				(get_root_dentry(file->f_path.dentry));
 			percent = (int)(sbi->nr_free_blocks*100/sbi->nr_blocks);
 			pr_info("block in percent after removing: %d \n", percent);
 		}
@@ -144,8 +151,8 @@ static int ouichefs_write_begin(struct file *file,
 				ouichefs_file_get_block);
 	/* if this failed, reclaim newly allocated blocks */
 	if (err < 0) {
+		//should not happened
 		remove_lru_file(root);
-		pr_info("EHOOO");
 	}
 	return err;
 }
