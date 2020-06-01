@@ -1,0 +1,38 @@
+#!/usr/bin/bash
+
+
+insmod ~/share/PNLProject/ouichefs.ko
+mkdir /mnt/PNLProject
+
+mount -o loop ~/share/PNLProject/mkfs/test.img /mnt/PNLProject
+mkdir /mnt/PNLProject/dir/
+mkdir /mnt/PNLProject/dir/dir2/
+mkdir /mnt/PNLProject/dir/dir3/
+
+for n in {1..2}; do
+    dd if=/dev/urandom of=/mnt/PNLProject/dir/dir2/$( printf %03d "$n" ).txt bs=1M count=$n;
+    sync;
+    sleep 1;
+done
+
+for n in {3..4}; do
+    dd if=/dev/urandom of=/mnt/PNLProject/dir/dir3/$( printf %03d "$n" ).txt bs=1M count=$n;
+    sync;
+    sleep 1;
+done
+
+insmod ~/share/PNLProject/mod_remove_bigger.ko
+
+echo -n clear_a_file /mnt/PNLProject > /sys/kernel/ouichefs/ouichefs
+echo -n clear_a_file /mnt/PNLProject > /sys/kernel/ouichefs/ouichefs
+
+rmmod ~/share/PNLProject/mod_remove_bigger.ko
+
+echo -n clear_a_file /mnt/PNLProject > /sys/kernel/ouichefs/ouichefs
+echo -n clear_a_file /mnt/PNLProject > /sys/kernel/ouichefs/ouichefs
+
+rm -rf /mnt/PNLProject/*
+umount /mnt/PNLProject
+
+rm -r /mnt/PNLProject
+rmmod ~/share/PNLProject/ouichefs.ko

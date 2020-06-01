@@ -42,7 +42,7 @@ int remove_LRU_file_of_dir(struct dentry *dir, int nbFiles)
 	struct inode *inode = NULL;
 	struct list_head *p;
 	struct dentry *d, *d_to_remove = NULL;
-	int ret, earlier;
+	int ret;
 
 	list_for_each(p, &dir->d_subdirs) {
 		d = list_entry(p, struct dentry, d_child);
@@ -53,7 +53,8 @@ int remove_LRU_file_of_dir(struct dentry *dir, int nbFiles)
 
 			if ((inode->i_state & I_DIRTY) == 0 &&
 				inode->i_blocks > 0)
-					d_to_remove = d;
+
+				d_to_remove = d;
 		}
 	}
 	pr_info("%s will be removed\n", d_to_remove->d_name.name);
@@ -68,7 +69,6 @@ void __remove_lru_file(struct dentry *root, struct dentry **d_to_remove)
 	struct list_head *p;
 	struct dentry *d;
 	struct inode *inode;
-	int earlier;
 
 	list_for_each(p, &root->d_subdirs) {
 		d = list_entry(p, struct dentry, d_child);
@@ -87,7 +87,8 @@ void __remove_lru_file(struct dentry *root, struct dentry **d_to_remove)
 
 			if ((inode->i_state & I_DIRTY) == 0 &&
 				inode->i_blocks > 0)
-					*d_to_remove = d;
+
+				*d_to_remove = d;
 		}
 	}
 }

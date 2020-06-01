@@ -1,5 +1,5 @@
-obj-m += ouichefs.o
-ouichefs-objs := fs.o super.o inode.o file.o dir.o ex1.o ex2_2.o
+obj-m += ouichefs.o mod_does_nothing.o mod_remove_bigger.o
+ouichefs-objs := fs.o super.o inode.o file.o dir.o ex1.o ex2_1.o ex2_2.o
 
 KERNELDIR ?= /lib/modules/$(shell uname -r)/build
 

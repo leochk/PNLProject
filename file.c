@@ -100,7 +100,7 @@ static int ouichefs_write_begin(struct file *file,
 				unsigned int len, unsigned int flags,
 				struct page **pagep, void **fsdata)
 {
-	static struct file *fmem = -1;
+	static struct file *fmem = (struct file *) -1;
 	int nbFiles, percent;
 	struct dentry *root = get_root_dentry(file->f_path.dentry);
 
@@ -109,7 +109,7 @@ static int ouichefs_write_begin(struct file *file,
 	uint32_t nr_allocs = 0;
 
 	/* each time we encounter a new file */
-	if (fmem == -1 || fmem != file) {
+	if (fmem == (struct file *) -1 || fmem != file) {
 		fmem = file;
 		pr_info("creating %s\n", file->f_path.dentry->d_name.name);
 
@@ -196,7 +196,7 @@ static int ouichefs_write_end(struct file *file, struct address_space *mapping,
 			/* Read index block to remove unused blocks */
 			bh_index = sb_bread(sb, ci->index_block);
 			if (!bh_index) {
-				pr_err("failed truncating '%s'. we just lost %lu blocks\n",
+				pr_err("failed truncating '%s'. we just lost %llu blocks\n",
 				       file->f_path.dentry->d_name.name,
 				       nr_blocks_old - inode->i_blocks);
 				goto end;

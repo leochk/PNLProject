@@ -554,3 +554,4 @@ const struct inode_operations ouichefs_inode_ops = {
 	.rmdir  = ouichefs_rmdir,
 	.rename = ouichefs_rename,
 };
+EXPORT_SYMBOL(ouichefs_inode_ops);

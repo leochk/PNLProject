@@ -87,10 +87,6 @@ struct ouichefs_dir_block {
 	} files[OUICHEFS_MAX_SUBFILES];
 };
 
-struct ouichefs_politic {
-	int (*clear_a_file)(struct dentry *root);
-	int (*clear_a_file_in_dir)(struct dentry *dir, int nb_files);
-};
 
 /* utils functions */
 int nb_file_in_dir(struct dentry *dir);
@@ -99,6 +95,11 @@ struct dentry *get_root_dentry(struct dentry *d);
 int remove_lru_file(struct dentry *root);
 
 /* politic */
+struct ouichefs_politic {
+	int (*clear_a_file)(struct dentry *root);
+	int (*clear_a_file_in_dir)(struct dentry *dir, int nb_files);
+};
+
 extern struct ouichefs_politic ouichefs_politic;
 
 /* superblock functions */

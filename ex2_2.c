@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: GPL-2.0
+
 #define pr_fmt(fmt) "ouichefs: " fmt
 
 #include <linux/module.h>
@@ -11,3 +13,4 @@ struct ouichefs_politic ouichefs_politic = {
 	.clear_a_file = remove_lru_file,
 	.clear_a_file_in_dir = remove_LRU_file_of_dir,
 };
+EXPORT_SYMBOL(ouichefs_politic);
