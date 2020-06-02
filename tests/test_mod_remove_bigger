@@ -21,12 +21,12 @@ for n in {3..4}; do
     sleep 1;
 done
 
-insmod ~/share/PNLProject/mod_remove_bigger.ko
+insmod ~/share/PNLProject/src_mod/mod_remove_bigger/mod_remove_bigger.ko
 
 echo -n clear_a_file /mnt/PNLProject > /sys/kernel/ouichefs/ouichefs
 echo -n clear_a_file /mnt/PNLProject > /sys/kernel/ouichefs/ouichefs
 
-rmmod ~/share/PNLProject/mod_remove_bigger.ko
+rmmod ~/share/PNLProject/src_mod/mod_remove_bigger/mod_remove_bigger.ko
 
 echo -n clear_a_file /mnt/PNLProject > /sys/kernel/ouichefs/ouichefs
 echo -n clear_a_file /mnt/PNLProject > /sys/kernel/ouichefs/ouichefs

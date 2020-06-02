@@ -13,12 +13,12 @@ for n in {1..4}; do
     sync;
 done
 
-insmod ~/share/PNLProject/mod_does_nothing.ko
+insmod ~/share/PNLProject/src_mod/mod_does_nothing/mod_does_nothing.ko
 
 echo -n clear_a_file /mnt/PNLProject > /sys/kernel/ouichefs/ouichefs
 echo -n clear_a_file /mnt/PNLProject > /sys/kernel/ouichefs/ouichefs
 
-rmmod ~/share/PNLProject/mod_does_nothing.ko
+rmmod ~/share/PNLProject/src_mod/mod_does_nothing/mod_does_nothing.ko
 
 echo -n clear_a_file /mnt/PNLProject > /sys/kernel/ouichefs/ouichefs
 echo -n clear_a_file /mnt/PNLProject > /sys/kernel/ouichefs/ouichefs
