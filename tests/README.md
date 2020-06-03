@@ -29,3 +29,8 @@ The inserted module should not remove any files. On rmmod, the scripts checks if
 
 /!\ Need test_ouichefs_sysfs to pass.
 Tests mod_remove_bigger correctness by using sysfs. The inserted module should remove the bigger file in partition. On rmmod, the scripts checks if the original politic is restored.
+
+## test_rand_files_in_subdirs
+
+Create 10 directories in a ouichefs partition, and create 1000 random files
+distributed in theses newly created directories.

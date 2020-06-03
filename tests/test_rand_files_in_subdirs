@@ -1,0 +1,22 @@
+#!/usr/bin/bash
+
+
+insmod ~/share/PNLProject/ouichefs.ko
+mkdir /mnt/PNLProject
+
+mount -o loop ~/share/PNLProject/mkfs/test.img /mnt/PNLProject
+
+mkdir /mnt/PNLProject/dir{1..5}
+
+for n in {1..1000}; do
+    DIR=/mnt/PNLProject/`ls /mnt/PNLProject | sort -R | tail -1`
+    dd if=/dev/urandom of=$DIR/$( printf %03d "$n" ).txt bs=1 count=$(( RANDOM + 1024 ));
+    sync;
+done
+
+
+rm -r /mnt/PNLProject/*
+
+umount /mnt/PNLProject
+rm -r /mnt/PNLProject
+rmmod ~/share/PNLProject/ouichefs.ko

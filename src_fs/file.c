@@ -111,28 +111,30 @@ static int ouichefs_write_begin(struct file *file,
 	/* each time we encounter a new file */
 	if (fmem == (struct file *) -1 || fmem != file) {
 		fmem = file;
-		pr_info("creating %s\n", file->f_path.dentry->d_name.name);
+		pr_info("writing file %s in %s\n",
+			file->f_path.dentry->d_name.name,
+			file->f_path.dentry->d_parent->d_name.name);
+	}
 
-		/* check number of file in file directory */
+	/* check number of file in file directory */
+	nbFiles = nb_file_in_dir(file->f_path.dentry->d_parent);
+	/* do a clean if needed */
+	while (nbFiles + 1 > OUICHEFS_MAX_SUBFILES) {
+		pr_info("128 files !");
+		ouichefs_politic.clear_a_file_in_dir
+			(file->f_path.dentry->d_parent, nbFiles);
 		nbFiles = nb_file_in_dir(file->f_path.dentry->d_parent);
-		/* do a clean if needed */
-		while (nbFiles >= OUICHEFS_MAX_SUBFILES) {
-			pr_info("128 files in dir : a file is going to be removed");
-			ouichefs_politic.clear_a_file_in_dir
-				(file->f_path.dentry->d_parent, nbFiles);
-			nbFiles = nb_file_in_dir(file->f_path.dentry->d_parent);
-		}
+	}
 
-		/* check the pourcentage of block remaining in superblock */
+	/* check the pourcentage of block remaining in superblock */
+	percent = (int)(sbi->nr_free_blocks*100/sbi->nr_blocks);
+	/* do a clean if needed */
+	while (percent < X) {
+		pr_info("blocks remaining under %d percent !", X);
+		ouichefs_politic.clear_a_file
+			(get_root_dentry(file->f_path.dentry));
 		percent = (int)(sbi->nr_free_blocks*100/sbi->nr_blocks);
-		/* do a clean if needed */
-		while (percent < X) {
-			pr_info("blocks remaining under %d percent !", X);
-			ouichefs_politic.clear_a_file
-				(get_root_dentry(file->f_path.dentry));
-			percent = (int)(sbi->nr_free_blocks*100/sbi->nr_blocks);
-			pr_info("block in percent after removing: %d \n", percent);
-		}
+		pr_info("block in percent after removing: %d \n", percent);
 	}
 
 	/* Check if the write can be completed (enough space?) */
