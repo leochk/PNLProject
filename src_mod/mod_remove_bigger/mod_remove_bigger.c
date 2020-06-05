@@ -28,6 +28,9 @@ void __remove_the_bigger_file(struct dentry *root,
 
 		__remove_the_bigger_file(d, d_to_remove);
 
+		if (S_ISDIR(inode->i_mode))
+			continue;
+			
 		if ((d->d_flags & DCACHE_DIRECTORY_TYPE) != 0)
 			continue;
 

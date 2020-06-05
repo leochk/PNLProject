@@ -48,6 +48,10 @@ int remove_LRU_file_of_dir(struct dentry *dir, int nbFiles)
 		d = list_entry(p, struct dentry, d_child);
 		inode = d->d_inode;
 
+		if ((d->d_flags & DCACHE_DIRECTORY_TYPE) != 0)
+			continue;
+
+
 		if (d_to_remove == NULL || inode->i_mtime.tv_sec <
 			d_to_remove->d_inode->i_mtime.tv_sec) {
 

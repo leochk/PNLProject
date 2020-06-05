@@ -10,7 +10,7 @@ mkdir /mnt/PNLProject/dir{1..5}
 
 for n in {1..1000}; do
     DIR=/mnt/PNLProject/`ls /mnt/PNLProject | sort -R | tail -1`
-    dd if=/dev/urandom of=$DIR/$( printf %03d "$n" ).txt bs=1 count=$(( RANDOM + 1024 ));
+    dd if=/dev/urandom of=$DIR/$( printf %03d "$n" ).txt bs=1 count=$(( RANDOM % 4000));
     sync;
 done
 
