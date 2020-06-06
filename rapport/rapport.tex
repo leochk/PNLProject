@@ -54,43 +54,44 @@
 	\pagenumbering{arabic}
 	\section{Etat d'avancement}
 	\subsection{Liste des fonctionnalités implémentées et fonctionnelles}
-	
+	Les fonctionnaliter implémenter sont les suivante :
+	\newline	
 	-Rotation du système de fichiers
 	\newline
 	-Politique de suppression de fichiers
 	\newline
 	-Interaction user / fs
-
-	\section{Rotation du système de fichiers}
-	\subsection{Structure utiliser}
-	A fin de réalier cette fonctionaliter les structure utiliser sont les suivante :
+	\section{Structure utiliser}
+	Afin de réaliser les différente fonctionaliter les structure utiliser sont les suivante :
 	\begin{lstlisting}
 	//pour acceder au fichier 
 	struct dentry;
 	//pour agire sur le fichier 
 	struct inode;
+	// qui a du etre exporter afin de pouvoir manipuler les fichier
+	const struct inode_operations ouichefs_inode_ops;
+	//afin de metre en place la politique qui continent
+	struct ouichefs_politic ouichefs_politic;
 	\end{lstlisting}
-	\subsection{Implementation}
-	la résolution du probléme psoer ce résout par l'implémentation des 2 fonctions suivante:
+	\section{Rotation du système de fichiers}
+	\subsection{Implémentation}
+	la résolution du probléme passe par l'implémentation des 2 fonctions suivante:
 	\begin{lstlisting}
 		int remove_lru_file(struct dentry *root);
 		int remove_LRU_file_of_dir(struct dentry *dir, int nbFiles);
 	\end{lstlisting}
-	Le callback des deux fonction est mis dans la structure ouichefs politic a fin quelle puisse etre appeler
-	par ouichfs des qu'il y a besoin.
+	Les callback des deux fonctions sont mises dans la structure \verb|ouichefs_politic| afin de pouvoir les utiliser dès qu'il y a un changement de politic par l'utilisateur.
 	\newline
-	Le principe des deux est le meme elles parcours touts les répertoir et check touts les fichier pour trouver le fichier a suprimer.
-	la différence étant les criter de sélection du fichier.	
+	Le principe des deux est le même elles parcourent tous les répertoires de façon récursif et vérifie tous les répertoires pour trouver le fichier a supprimé. 
+	\newline
+	La différence étant les critères de sélection du fichier
 	\section{Politique de suppression de fichiers}
 	\subsection{Structure utiliser}
-	\begin{lstlisting}
-		//a fin de metre en place la politique
-		struct ouichefs_politic;
-	\end{lstlisting}
-	\subsection{Implementation}
-	La structure permet entre autre de mettre les callback des fonction utiliser précédament
-	qui est ensuite exporter a fin d'etre connus du module qui va le déployer dans ouishfs
+	\subsection{Implémentation}
+	La politique de suppression est LRU. Par conséquent, pour la sélection du fichier à supprimer la comparaison se fait au niveau des inodes en comparant \verb|"i_mtime.tv_sec"|
 	\section{Interaction user / fs}
-	%\subsection{Liste des fonctionnalités implémentées, mais qui ne fonctionne pas complètement}
-		
+	\subsection{Implémentation}
+	Pour les intéractions user, elles passent par la structure \verb|ouichefs_politic| , suite à un echo du nom de la fonction et du répertoire dans le fichier	"/sys/kernel/ouichefs/ouichefs" permet d'activer ou désactiver
+	la politique de supprésion sur un répertoire donné.
+
 \end{document}
