@@ -62,7 +62,7 @@
 	\newline
 	-Interaction user / fs
 	\section{Structures utilisées}
-	Afin de réaliser les différentes fonctionalitées, les structures utilisées sont les suivantes :
+	Afin de réaliser les différentes fonctionalités, les structures utilisées sont les suivantes :
 	\begin{lstlisting}
 	// pour les relations entre fichier et dossiers
 	struct dentry;
@@ -88,18 +88,22 @@
 		int remove_lru_file(struct dentry *root);
 	\end{lstlisting}
 	
-	La première fonction permet la rotation de fichiers dans le premier scénario indiqué ci-dessus. En prenant un paramètre le dentry correspondant au répertoire du fichier nouvellement créé et son nombre de fichiers, elle cherche le fichier qui a été utilisé le moins récemment, et le supprime du répertoire en utilisant la fonction unlink de la variable \verb|ouichefs_inode_ops| et retourne sa valeur de retour. Par conséquent, lorsqu'elle ne trouve pas de fichiers à supprimé, une erreur est retournée. Plus particulièrement, lorsqu'un répertoire contient 128 sous répertoires, nous choississons de ne pas en supprimer pour des raisons de sûreté (répertoires sensibles, répertoire nécessaire au bon fonctionnement du kernel, etc...).
+	La première fonction permet la rotation de fichiers dans le premier scénario indiqué ci-dessus. En prenant un paramètre le dentry correspondant au répertoire du fichier nouvellement créé et son nombre de fichiers, elle cherche le fichier qui a été utilisé le moins récemment, et le supprime du répertoire en utilisant la fonction unlink de la variable \verb|ouichefs_inode_ops| et retourne sa valeur de retour. Par conséquent, lorsqu'elle ne trouve pas de fichiers à supprimé, une erreur est retournée. Plus particulièrement, lorsqu'un répertoire contient 128 sous répertoires, nous choississons de ne pas en supprimer pour des raisons de sûreté (répertoires sensibles, répertoire nécessaire au bon fonctionnement du kernel, etc...).\newline
 	
-	\newline
-	Dans le cas où il reste X\% blocs, la deuxième fonction est appelée. Elle prend en entrée le dentry racine de la partition, mais effectue une recherche récursive dans tous les répertoires de la partition pour rechercher le fichier utilisé. La suppression et la valeur retournée est faite de la même manière que dans la première fonction.
 	
-	\newline
-	Nous crééons une structure \verb|ouichefs_politic| dans le fichier \verb|ex2_2.c|, qui contiendra 2 pointeurs vers les 2 fonctions. Cela permettra de modifier les politiques de supression dans les 2 scénarios par l'intermédiaire d'un module. Elle est par conséquent exporté avec la macro \verb|EXPORT_SYMBOL| afin qu'elle soit accessible.
+	Dans le cas où il reste X\% blocs, la deuxième fonction est appelée. Elle prend en entrée le dentry racine de la partition, mais effectue une recherche récursive dans tous les répertoires de la partition pour rechercher le fichier utilisé. La suppression et la valeur retournée est faite de la même manière que dans la première fonction.\newline
+	
+	
+	Nous créons une structure \verb|ouichefs_politic| dans le fichier \verb|ex2_2.c|, qui contiendra 2 pointeurs vers les 2 fonctions. Cela permettra de modifier les politiques de supression dans les 2 scénarios par l'intermédiaire d'un module. Elle est par conséquent exportée à l'aide de la macro \verb|EXPORT_SYMBOL| afin qu'elle soit accessible.
 
 	\section{Politique de suppression de fichiers}
-	\subsection{Structure utiliser}
 	\subsection{Implémentation}
-	La politique de suppression est LRU. Par conséquent, pour la sélection du fichier à supprimer la comparaison se fait au niveau des inodes en comparant \verb|"i_mtime.tv_sec"|
+	Par défaut la politique d'éviction est donc de supprimer le fichier le moins récemment utilisé,  la comparaison se fait au niveau des inodes en comparant \verb|"i_mtime.tv_sec"| .\newline
+	On souhaite pouvoir modifier cette politique d'éviction afin de porter le choix de la victime sur le fichier de plus grande taille, en comparant donc le champ \verb|i_size| de la structure inode.\newline
+	Pour effectuer cette modification, on insère le module \verb|mod_remove_biger| qui va changer la fonction pointée par le champ \verb|clear_a_file| de la structure \verb|ouichefs_politic| vers une nouvelle fonction \verb|remove_the_bigger_file|, parcourant l'arborescende de fichiers pour en supprimer le plus grand.\newline
+	Pour retourner à la politique d'éviction d'origine, il suffit de retirer le module.\newline
+	On peut aussi utiliser le module \verb|mod_does_nothing| qui remplacera la suppression d'un fichier par un affichage à des fins de debug.
+	
 	\section{Interaction user / fs}
 	\subsection{Implémentation}
 	Nos fonctions ont besoin d'un dentry en paramètre pour réaliser les supressions. C'est pourquoi nous choissisons le sysfs pour permettre à l'utilisateur de les invoquer manuellement, en respectant un certain protocole : 
