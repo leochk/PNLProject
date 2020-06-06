@@ -52,46 +52,60 @@
 
 	\newpage
 	\pagenumbering{arabic}
-	\section{Etat d'avancement}
+	\section{État d'avancement}
 	\subsection{Liste des fonctionnalités implémentées et fonctionnelles}
-	Les fonctionnaliter implémenter sont les suivante :
+	Les fonctionnalitées implémentées sont les suivantes :
 	\newline	
 	-Rotation du système de fichiers
 	\newline
 	-Politique de suppression de fichiers
 	\newline
 	-Interaction user / fs
-	\section{Structure utiliser}
-	Afin de réaliser les différente fonctionaliter les structure utiliser sont les suivante :
+	\section{Structures utilisées}
+	Afin de réaliser les différentes fonctionalitées, les structures utilisées sont les suivantes :
 	\begin{lstlisting}
-	//pour acceder au fichier 
+	// pour les relations entre fichier et dossiers
 	struct dentry;
-	//pour agire sur le fichier 
+	// pour obtenir les metadata d'un fichier
 	struct inode;
-	// qui a du etre exporter afin de pouvoir manipuler les fichier
+	// manipuler les fichiers, notamment les supprimer
 	const struct inode_operations ouichefs_inode_ops;
-	//afin de metre en place la politique qui continent
+	// notre propre structure, contenant les politiques de supression
 	struct ouichefs_politic ouichefs_politic;
 	\end{lstlisting}
 	\section{Rotation du système de fichiers}
 	\subsection{Implémentation}
-	la résolution du probléme passe par l'implémentation des 2 fonctions suivante:
+
+    La rotation de fichiers se réalise dans ces deux cas :
+	\begin{enumerate}
+        \item Un fichier est créé par l'utilisateur dans un répertoire contenant 128 fichiers et/ou répertoire.
+        \item Soit X un entier compris entre 0 et 100: il reste X\% blocs restant dans le superblock de la partition.
+        \newline
+    \end{enumerate}
+    La résolution du problème passe par l'implémentation des 2 fonctions suivantes (situées dans le fichier \verb|ex1.c|):
 	\begin{lstlisting}
-		int remove_lru_file(struct dentry *root);
 		int remove_LRU_file_of_dir(struct dentry *dir, int nbFiles);
+		int remove_lru_file(struct dentry *root);
 	\end{lstlisting}
-	Les callback des deux fonctions sont mises dans la structure \verb|ouichefs_politic| afin de pouvoir les utiliser dès qu'il y a un changement de politic par l'utilisateur.
+	
+	La première fonction permet la rotation de fichiers dans le premier scénario indiqué ci-dessus. En prenant un paramètre le dentry correspondant au répertoire du fichier nouvellement créé et son nombre de fichiers, elle cherche le fichier qui a été utilisé le moins récemment, et le supprime du répertoire en utilisant la fonction unlink de la variable \verb|ouichefs_inode_ops| et retourne sa valeur de retour. Par conséquent, lorsqu'elle ne trouve pas de fichiers à supprimé, une erreur est retournée. Plus particulièrement, lorsqu'un répertoire contient 128 sous répertoires, nous choississons de ne pas en supprimer pour des raisons de sûreté (répertoires sensibles, répertoire nécessaire au bon fonctionnement du kernel, etc...).
+	
 	\newline
-	Le principe des deux est le même elles parcourent tous les répertoires de façon récursif et vérifie tous les répertoires pour trouver le fichier a supprimé. 
+	Dans le cas où il reste X\% blocs, la deuxième fonction est appelée. Elle prend en entrée le dentry racine de la partition, mais effectue une recherche récursive dans tous les répertoires de la partition pour rechercher le fichier utilisé. La suppression et la valeur retournée est faite de la même manière que dans la première fonction.
+	
 	\newline
-	La différence étant les critères de sélection du fichier
+	Nous crééons une structure \verb|ouichefs_politic| dans le fichier \verb|ex2_2.c|, qui contiendra 2 pointeurs vers les 2 fonctions. Cela permettra de modifier les politiques de supression dans les 2 scénarios par l'intermédiaire d'un module. Elle est par conséquent exporté avec la macro \verb|EXPORT_SYMBOL| afin qu'elle soit accessible.
+
 	\section{Politique de suppression de fichiers}
 	\subsection{Structure utiliser}
 	\subsection{Implémentation}
 	La politique de suppression est LRU. Par conséquent, pour la sélection du fichier à supprimer la comparaison se fait au niveau des inodes en comparant \verb|"i_mtime.tv_sec"|
 	\section{Interaction user / fs}
 	\subsection{Implémentation}
-	Pour les intéractions user, elles passent par la structure \verb|ouichefs_politic| , suite à un echo du nom de la fonction et du répertoire dans le fichier	"/sys/kernel/ouichefs/ouichefs" permet d'activer ou désactiver
-	la politique de supprésion sur un répertoire donné.
-
+	Nos fonctions ont besoin d'un dentry en paramètre pour réaliser les supressions. C'est pourquoi nous choissisons le sysfs pour permettre à l'utilisateur de les invoquer manuellement, en respectant un certain protocole : 
+	\begin{lstlisting}
+    	echo -n <function> <dir> > /sys/kernel/ouichefs/ouichefs
+	\end{lstlisting}
+    où \verb|<function> = {"clear_a_file", "clear_a_file_in_dir"}| et \verb|<dir>| doit correspondre à un chemin vers un répertoire d'une partition ouichefs. Ainsi, grâce à la fonction \verb|filp_open()|, le sysfs peut récupérer le file, puis le dentry du répertoire cible. Cette implémentation permet donc à l'utilisateur d'avoir plusieurs partition ouichefs, et indiquer dans quel partition il souhaite déclencher une supression. Cependant, nous devons faire l'hypothèse que l'utilisateur respecte le protocole.
+    Ce sysfs est instancié dans le fichier \verb|fs.c|. 
 \end{document}
