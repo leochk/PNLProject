@@ -1,7 +1,7 @@
 obj-m += ouichefs.o src_mod/mod_does_nothing/mod_does_nothing.o src_mod/mod_remove_bigger/mod_remove_bigger.o
 ouichefs-objs := src_fs/fs.o src_fs/super.o src_fs/inode.o src_fs/file.o src_fs/dir.o src_fs/ex1.o src_fs/ex2_1.o src_fs/ex2_2.o
-
-KERNELDIR ?= /lib/modules/$(shell uname -r)/build
+KERNELDIR ?= /home/adrien/PNL/linux-4.19.3
+#KERNELDIR ?= /lib/modules/$(shell uname -r)/build
 
 all:
 	make -C $(KERNELDIR) M=$(PWD) modules
