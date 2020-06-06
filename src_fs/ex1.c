@@ -67,7 +67,10 @@ int remove_LRU_file_of_dir(struct dentry *dir, int nbFiles)
 	inode_unlock(dir->d_inode);
 	return ret;
 }
-
+/**
+ *Sub function used to go throug all directorys and all sub dirs
+ *to find the least recently used file
+ */
 void __remove_lru_file(struct dentry *root, struct dentry **d_to_remove)
 {
 	struct list_head *p;

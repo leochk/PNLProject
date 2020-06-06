@@ -24,11 +24,11 @@ void __remove_the_bigger_file(struct dentry *root,
 	struct list_head *p;
 	struct dentry *d;
 	struct inode *inode;
-	/* for all this dentry children*/
+	/* for all this dentry children */
 	list_for_each(p, &root->d_subdirs) {
 		d = list_entry(p, struct dentry, d_child);
 		inode = d->d_inode;
-		/* and for every one of them*/
+		/* and for every one of them */
 		__remove_the_bigger_file(d, d_to_remove);
 
 		/* Check that is not a directory */

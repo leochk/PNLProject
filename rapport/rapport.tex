@@ -13,7 +13,7 @@
 \definecolor{mauve}{rgb}{0.58,0,0.82}
 
 \lstset{frame=tb,
-  language=Java,
+  language=C,
   aboveskip=3mm,
   belowskip=3mm,
   showstringspaces=false,
@@ -54,9 +54,43 @@
 	\pagenumbering{arabic}
 	\section{Etat d'avancement}
 	\subsection{Liste des fonctionnalités implémentées et fonctionnelles}
-	\subsection{Liste des fonctionnalités implémentées, mais qui ne fonctionne pas complètement}
+	
+	-Rotation du système de fichiers
+	\newline
+	-Politique de suppression de fichiers
+	\newline
+	-Interaction user / fs
+
 	\section{Rotation du système de fichiers}
+	\subsection{Structure utiliser}
+	A fin de réalier cette fonctionaliter les structure utiliser sont les suivante :
+	\begin{lstlisting}
+	//pour acceder au fichier 
+	struct dentry;
+	//pour agire sur le fichier 
+	struct inode;
+	\end{lstlisting}
+	\subsection{Implementation}
+	la résolution du probléme psoer ce résout par l'implémentation des 2 fonctions suivante:
+	\begin{lstlisting}
+		int remove_lru_file(struct dentry *root);
+		int remove_LRU_file_of_dir(struct dentry *dir, int nbFiles);
+	\end{lstlisting}
+	Le callback des deux fonction est mis dans la structure ouichefs politic a fin quelle puisse etre appeler
+	par ouichfs des qu'il y a besoin.
+	\newline
+	Le principe des deux est le meme elles parcours touts les répertoir et check touts les fichier pour trouver le fichier a suprimer.
+	la différence étant les criter de sélection du fichier.	
 	\section{Politique de suppression de fichiers}
+	\subsection{Structure utiliser}
+	\begin{lstlisting}
+		//a fin de metre en place la politique
+		struct ouichefs_politic;
+	\end{lstlisting}
+	\subsection{Implementation}
+	La structure permet entre autre de mettre les callback des fonction utiliser précédament
+	qui est ensuite exporter a fin d'etre connus du module qui va le déployer dans ouishfs
 	\section{Interaction user / fs}
+	%\subsection{Liste des fonctionnalités implémentées, mais qui ne fonctionne pas complètement}
 		
 \end{document}
