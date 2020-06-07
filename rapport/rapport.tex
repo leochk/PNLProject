@@ -56,11 +56,11 @@
 	\subsection{Liste des fonctionnalités implémentées et fonctionnelles}
 	Les fonctionnalitées implémentées sont les suivantes :
 	\newline
-	-Rotation du système de fichiers
+	\indent  \indent  -Rotation du système de fichiers
 	\newline
-	-Politique de suppression de fichiers
+	\indent  \indent -Politique de suppression de fichiers
 	\newline
-	-Interaction user / fs
+	\indent  \indent -Interaction user / fs
 	\section{Structures utilisées}
 	Afin de réaliser les différentes fonctionalités, les structures utilisées sont les suivantes :
 	\begin{lstlisting}
@@ -70,7 +70,7 @@
 	struct inode;
 	// manipuler les fichiers, notamment les supprimer
 	const struct inode_operations ouichefs_inode_ops;
-	// notre propre structure, contenant les politiques de supression
+	// notre propre structure, contenant les politiques de suppression
 	struct ouichefs_politic ouichefs_politic;
 	\end{lstlisting}
 	\section{Rotation du système de fichiers}
@@ -94,7 +94,7 @@
 	Dans le cas où il reste X\% blocs, la deuxième fonction est appelée. Elle prend en entrée le dentry racine de la partition, mais effectue une recherche récursive dans tous les répertoires de la partition pour rechercher le fichier utilisé. La suppression et la valeur retournée est faite de la même manière que dans la première fonction.\newline
 
 
-	Nous créons une structure \verb|ouichefs_politic| dans le fichier \verb|ex2_2.c|, qui contiendra 2 pointeurs vers les 2 fonctions. Cela permettra de modifier les politiques de supression dans les 2 scénarios par l'intermédiaire d'un module. Elle est par conséquent exportée à l'aide de la macro \verb|EXPORT_SYMBOL| afin qu'elle soit accessible.
+	Nous créons une structure \verb|ouichefs_politic| dans le fichier \verb|ex2_2.c|, qui contiendra 2 pointeurs vers les 2 fonctions. Cela permettra de modifier les politiques de suppression dans les 2 scénarios par l'intermédiaire d'un module. Elle est par conséquent exportée à l'aide de la macro \verb|EXPORT_SYMBOL| afin qu'elle soit accessible.
 
 	\section{Politique de suppression de fichiers}
 	\subsection{Implémentation}
@@ -108,10 +108,10 @@
 
 	\section{Interaction user / fs}
 	\subsection{Implémentation}
-	Nos fonctions ont besoin d'un dentry en paramètre pour réaliser les supressions. C'est pourquoi nous choissisons le sysfs pour permettre à l'utilisateur de les invoquer manuellement, en respectant un certain protocole :
+	Nos fonctions ont besoin d'un dentry en paramètre pour réaliser les suppressions. C'est pourquoi nous choissisons le sysfs pour permettre à l'utilisateur de les invoquer manuellement, en respectant un certain protocole :
 	\begin{lstlisting}
     	echo -n <function> <dir> > /sys/kernel/ouichefs/ouichefs
 	\end{lstlisting}
-    où \verb|<function> = {"clear_a_file", "clear_a_file_in_dir"}| et \verb|<dir>| doit correspondre à un chemin vers un répertoire d'une partition ouichefs. Ainsi, grâce à la fonction \verb|filp_open()|, le sysfs peut récupérer le file, puis le dentry du répertoire cible. Cette implémentation permet donc à l'utilisateur d'avoir plusieurs partition ouichefs, et indiquer dans quel partition il souhaite déclencher une supression. Cependant, nous devons faire l'hypothèse que l'utilisateur respecte le protocole.
+    où \verb|<function> = {"clear_a_file", "clear_a_file_in_dir"}| et \verb|<dir>| doit correspondre à un chemin vers un répertoire d'une partition ouichefs. Ainsi, grâce à la fonction \verb|filp_open()|, le sysfs peut récupérer le file, puis le dentry du répertoire cible. Cette implémentation permet donc à l'utilisateur d'avoir plusieurs partition ouichefs, et indiquer dans quel partition il souhaite déclencher une suppression. Cependant, nous devons faire l'hypothèse que l'utilisateur respecte le protocole.
     Ce sysfs est instancié dans le fichier \verb|fs.c|.
 \end{document}
