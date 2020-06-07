@@ -40,10 +40,10 @@
 	\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
 	\center
 	\textsc{\LARGE
-	PNL - Projet 2019/2020 
+	PNL - Projet 2019/2020
 	} \\[1cm]
 	\HRule \\[0.4cm]
-	{ \huge \bfseries le système de fichiers le plus classe du monde \\[0.15cm] }
+	{ \huge \bfseries Le système de fichiers le plus classe du monde \\[0.15cm] }
 	\HRule \\[4cm]
 	\large{Léo Check \\[3mm] Tarik Atlaoui \\[3mm] Max Eliet} \\[3cm]
 	05 Juin 2020 \\[3cm]
@@ -55,7 +55,7 @@
 	\section{État d'avancement}
 	\subsection{Liste des fonctionnalités implémentées et fonctionnelles}
 	Les fonctionnalitées implémentées sont les suivantes :
-	\newline	
+	\newline
 	-Rotation du système de fichiers
 	\newline
 	-Politique de suppression de fichiers
@@ -87,29 +87,31 @@
 		int remove_LRU_file_of_dir(struct dentry *dir, int nbFiles);
 		int remove_lru_file(struct dentry *root);
 	\end{lstlisting}
-	
+
 	La première fonction permet la rotation de fichiers dans le premier scénario indiqué ci-dessus. En prenant un paramètre le dentry correspondant au répertoire du fichier nouvellement créé et son nombre de fichiers, elle cherche le fichier qui a été utilisé le moins récemment, et le supprime du répertoire en utilisant la fonction unlink de la variable \verb|ouichefs_inode_ops| et retourne sa valeur de retour. Par conséquent, lorsqu'elle ne trouve pas de fichiers à supprimé, une erreur est retournée. Plus particulièrement, lorsqu'un répertoire contient 128 sous répertoires, nous choississons de ne pas en supprimer pour des raisons de sûreté (répertoires sensibles, répertoire nécessaire au bon fonctionnement du kernel, etc...).\newline
-	
-	
+
+
 	Dans le cas où il reste X\% blocs, la deuxième fonction est appelée. Elle prend en entrée le dentry racine de la partition, mais effectue une recherche récursive dans tous les répertoires de la partition pour rechercher le fichier utilisé. La suppression et la valeur retournée est faite de la même manière que dans la première fonction.\newline
-	
-	
+
+
 	Nous créons une structure \verb|ouichefs_politic| dans le fichier \verb|ex2_2.c|, qui contiendra 2 pointeurs vers les 2 fonctions. Cela permettra de modifier les politiques de supression dans les 2 scénarios par l'intermédiaire d'un module. Elle est par conséquent exportée à l'aide de la macro \verb|EXPORT_SYMBOL| afin qu'elle soit accessible.
 
 	\section{Politique de suppression de fichiers}
 	\subsection{Implémentation}
-	Par défaut la politique d'éviction est donc de supprimer le fichier le moins récemment utilisé,  la comparaison se fait au niveau des inodes en comparant \verb|"i_mtime.tv_sec"| .\newline
-	On souhaite pouvoir modifier cette politique d'éviction afin de porter le choix de la victime sur le fichier de plus grande taille, en comparant donc le champ \verb|i_size| de la structure inode.\newline
+	Par défaut la politique d'éviction est donc de supprimer le fichier le moins récemment utilisé,  la comparaison se fait au niveau des inodes en comparant leurs attributs \verb|"i_mtime.tv_sec"| .\newline
+	On souhaite pouvoir modifier cette politique d'éviction par insertion de module. Par conséquent, il était nécessaire que le développeur du module ait accès à la l'attribut \verb|unlink| de la variable \verb|ouichefs_inode_ops|. C'est pourquoi nous utilisons la macro \verb|EXPORT_SYMBOL| sur cette dernière.
+	Un première idée serait de choisir le fichier de plus grande taille lorsque X\% sont restants dans une partition, en comparant donc le champ \verb|i_size| de la structure inode.\newline
+
 	Pour effectuer cette modification, on insère le module \verb|mod_remove_biger| qui va changer la fonction pointée par le champ \verb|clear_a_file| de la structure \verb|ouichefs_politic| vers une nouvelle fonction \verb|remove_the_bigger_file|, parcourant l'arborescende de fichiers pour en supprimer le plus grand.\newline
-	Pour retourner à la politique d'éviction d'origine, il suffit de retirer le module.\newline
+	Pour retourner à la politique originale, le développeur du module doit s'assurer de garder en mémoire l'ancienne politique dans un pointeur de fonction, et la restaurer plus tard, lorsque le module est retiré par exemple.\newline
 	On peut aussi utiliser le module \verb|mod_does_nothing| qui remplacera la suppression d'un fichier par un affichage à des fins de debug.
-	
+
 	\section{Interaction user / fs}
 	\subsection{Implémentation}
-	Nos fonctions ont besoin d'un dentry en paramètre pour réaliser les supressions. C'est pourquoi nous choissisons le sysfs pour permettre à l'utilisateur de les invoquer manuellement, en respectant un certain protocole : 
+	Nos fonctions ont besoin d'un dentry en paramètre pour réaliser les supressions. C'est pourquoi nous choissisons le sysfs pour permettre à l'utilisateur de les invoquer manuellement, en respectant un certain protocole :
 	\begin{lstlisting}
     	echo -n <function> <dir> > /sys/kernel/ouichefs/ouichefs
 	\end{lstlisting}
     où \verb|<function> = {"clear_a_file", "clear_a_file_in_dir"}| et \verb|<dir>| doit correspondre à un chemin vers un répertoire d'une partition ouichefs. Ainsi, grâce à la fonction \verb|filp_open()|, le sysfs peut récupérer le file, puis le dentry du répertoire cible. Cette implémentation permet donc à l'utilisateur d'avoir plusieurs partition ouichefs, et indiquer dans quel partition il souhaite déclencher une supression. Cependant, nous devons faire l'hypothèse que l'utilisateur respecte le protocole.
-    Ce sysfs est instancié dans le fichier \verb|fs.c|. 
+    Ce sysfs est instancié dans le fichier \verb|fs.c|.
 \end{document}
