@@ -5,7 +5,7 @@
 #include <linux/fs.h>
 #include <linux/buffer_head.h>
 #include <linux/slab.h>
-
+#include <linux/time64.h>
 #include "ouichefs.h"
 
 /*
@@ -42,29 +42,45 @@ int remove_LRU_file_of_dir(struct dentry *dir, int nbFiles)
 	struct inode *inode = NULL;
 	struct list_head *p;
 	struct dentry *d, *d_to_remove = NULL;
+	struct timespec64 *lhs, *rhs;
 	int ret;
+	int cpt = 0;
 
 	list_for_each(p, &dir->d_subdirs) {
 		d = list_entry(p, struct dentry, d_child);
+
 		inode = d->d_inode;
 
+		if (strcmp(d->d_name.name, "001.txt") == NULL) {
+			pr_info("%p, %d, %d, %d",
+				inode,
+				((inode->i_state & I_DIRTY) != 0),
+				inode->i_blocks == 0,
+				(d->d_flags & DCACHE_DIRECTORY_TYPE) != 0
+			);
+		}
+		if (inode == NULL)
+			continue;
+		if (inode->i_blocks == 0)
+			continue;
 		if ((d->d_flags & DCACHE_DIRECTORY_TYPE) != 0)
 			continue;
 
+		if (d_to_remove == NULL)
+			d_to_remove = d;
 
-		if (d_to_remove == NULL || inode->i_mtime.tv_sec <
-			d_to_remove->d_inode->i_mtime.tv_sec) {
+		lhs = &(inode->i_mtime);
+		rhs = &(d_to_remove->d_inode->i_mtime);
 
-			if ((inode->i_state & I_DIRTY) == 0 &&
-				inode->i_blocks > 0)
-
-				d_to_remove = d;
+		if (timespec64_compare(lhs, rhs) < 0) {
+			d_to_remove = d;
 		}
 	}
+
 	pr_info("%s will be removed\n", d_to_remove->d_name.name);
-	inode_lock(dir->d_inode);
+	//inode_lock(dir->d_inode);
 	ret = ouichefs_inode_ops.unlink(dir->d_inode, d_to_remove);
-	inode_unlock(dir->d_inode);
+	//inode_unlock(dir->d_inode);
 	return ret;
 }
 /**
@@ -76,26 +92,29 @@ void __remove_lru_file(struct dentry *root, struct dentry **d_to_remove)
 	struct list_head *p;
 	struct dentry *d;
 	struct inode *inode;
+	struct timespec64 *lhs, *rhs;
 
 	list_for_each(p, &root->d_subdirs) {
 		d = list_entry(p, struct dentry, d_child);
+
 		inode = d->d_inode;
-
 		__remove_lru_file(d, d_to_remove);
-
-		if ((d->d_flags & DCACHE_DIRECTORY_TYPE) != 0)
-			continue;
 
 		if (inode == NULL)
 			continue;
+		if (inode->i_blocks == 0)
+			continue;
+		if ((d->d_flags & DCACHE_DIRECTORY_TYPE) != 0)
+			continue;
 
-		if (*d_to_remove == NULL || inode->i_mtime.tv_sec <
-			(*d_to_remove)->d_inode->i_mtime.tv_sec) {
+		if (*d_to_remove == NULL)
+			*d_to_remove = d;
 
-			if ((inode->i_state & I_DIRTY) == 0 &&
-				inode->i_blocks > 0)
+		lhs = &(inode->i_mtime);
+		rhs = &((*d_to_remove)->d_inode->i_mtime);
 
-				*d_to_remove = d;
+		if (timespec64_compare(lhs, rhs) < 0) {
+			*d_to_remove = d;
 		}
 	}
 }
@@ -115,6 +134,7 @@ int remove_lru_file(struct dentry *root)
 
 	pr_info("%s in directory %s will be removed\n",
 		d_to_remove->d_name.name, d_to_remove->d_parent->d_name.name);
+
 	inode_lock(d_to_remove->d_parent->d_inode);
 	ret = ouichefs_inode_ops.unlink
 		(d_to_remove->d_parent->d_inode, d_to_remove);

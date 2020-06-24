@@ -116,16 +116,6 @@ static int ouichefs_write_begin(struct file *file,
 			file->f_path.dentry->d_parent->d_name.name);
 	}
 
-	/* check number of file in file directory */
-	nbFiles = nb_file_in_dir(file->f_path.dentry->d_parent);
-	/* do a clean if needed */
-	while (nbFiles + 1 > OUICHEFS_MAX_SUBFILES) {
-		pr_info("128 files !");
-		ouichefs_politic.clear_a_file_in_dir
-			(file->f_path.dentry->d_parent, nbFiles);
-		nbFiles = nb_file_in_dir(file->f_path.dentry->d_parent);
-	}
-
 	/* check the pourcentage of block remaining in superblock */
 	percent = (int)(sbi->nr_free_blocks*100/sbi->nr_blocks);
 	/* do a clean if needed */

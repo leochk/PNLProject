@@ -227,6 +227,20 @@ static int ouichefs_create(struct inode *dir, struct dentry *dentry,
 	char *fblock;
 	struct buffer_head *bh, *bh2;
 	int ret = 0, i;
+	int nbFiles, percent;
+
+	/* check number of file in file directory */
+	nbFiles = nb_file_in_dir(dentry->d_parent);
+	pr_info("creating %s in directory %s\n",
+		dentry->d_name.name,
+		dentry->d_parent->d_name.name);
+	/* do a clean if needed */
+	while (nbFiles + 1 > OUICHEFS_MAX_SUBFILES) {
+		pr_info("128 files !\n");
+		ouichefs_politic.clear_a_file_in_dir
+			(dentry->d_parent, nbFiles);
+		nbFiles = nb_file_in_dir(dentry->d_parent);
+	}
 
 	/* Check filename length */
 	if (strlen(dentry->d_name.name) > OUICHEFS_FILENAME_LEN)

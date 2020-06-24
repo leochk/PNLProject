@@ -1,29 +1,27 @@
 #!/usr/bin/bash
 
+ROOT_OUICHEFS=/mnt/PNLProject
 
 insmod ~/share/PNLProject/ouichefs.ko
-mkdir /mnt/PNLProject
+mkdir $ROOT_OUICHEFS
 
-mount -o loop ~/share/PNLProject/mkfs/test.img /mnt/PNLProject
-mkdir /mnt/PNLProject/dir/
-mkdir /mnt/PNLProject/dir/dir2/
+mount -o loop ~/share/PNLProject/mkfs/test.img $ROOT_OUICHEFS
+mkdir $ROOT_OUICHEFS/dir/
+mkdir $ROOT_OUICHEFS/dir/dir2/
 
 for n in {1..4}; do
-    dd if=/dev/urandom of=/mnt/PNLProject/dir/dir2/$( printf %03d "$n" ).txt bs=1M count=$n;
+    touch $ROOT_OUICHEFS/dir/dir2/$( printf %03d "$n" ).txt
+    dd if=/dev/urandom of=$ROOT_OUICHEFS/dir/dir2/$( printf %03d "$n" ).txt bs=1M count=$n;
     sync;
 done
 
+echo -n clear_a_file $ROOT_OUICHEFS > /sys/kernel/ouichefs/ouichefs
+echo -n clear_a_file $ROOT_OUICHEFS > /sys/kernel/ouichefs/ouichefs
+echo -n clear_a_file_in_dir $ROOT_OUICHEFS/dir/dir2 > /sys/kernel/ouichefs/ouichefs
+echo -n clear_a_file_in_dir $ROOT_OUICHEFS/dir/dir2 > /sys/kernel/ouichefs/ouichefs
 
-#echo -n a_function_non_defined /mnt/PNLProject/dir > /sys/kernel/ouichefs/ouichefs
-#echo -n an_other_undefined /mnt/PNLProject/dir > /sys/kernel/ouichefs/ouichefs
-#echo -n clear_a_file /mnt/PNLProject/notexists > /sys/kernel/ouichefs/ouichefs
-echo -n clear_a_file /mnt/PNLProject > /sys/kernel/ouichefs/ouichefs
-echo -n clear_a_file /mnt/PNLProject > /sys/kernel/ouichefs/ouichefs
-echo -n clear_a_file_in_dir /mnt/PNLProject/dir/dir2 > /sys/kernel/ouichefs/ouichefs
-echo -n clear_a_file_in_dir /mnt/PNLProject/dir/dir2 > /sys/kernel/ouichefs/ouichefs
+rm -rf $ROOT_OUICHEFS/*
+umount $ROOT_OUICHEFS
 
-rm -rf /mnt/PNLProject/*
-umount /mnt/PNLProject
-
-rm -r /mnt/PNLProject
+rm -r $ROOT_OUICHEFS
 rmmod ~/share/PNLProject/ouichefs.ko

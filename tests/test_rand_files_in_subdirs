@@ -1,22 +1,24 @@
 #!/usr/bin/bash
 
+ROOT_OUICHEFS=/mnt/PNLProject
 
 insmod ~/share/PNLProject/ouichefs.ko
-mkdir /mnt/PNLProject
+mkdir $ROOT_OUICHEFS
 
-mount -o loop ~/share/PNLProject/mkfs/test.img /mnt/PNLProject
+mount -o loop ~/share/PNLProject/mkfs/test.img $ROOT_OUICHEFS
 
-mkdir /mnt/PNLProject/dir{1..5}
+mkdir $ROOT_OUICHEFS/dir{1..5}
 
-for n in {1..1000}; do
-    DIR=/mnt/PNLProject/`ls /mnt/PNLProject | sort -R | tail -1`
-    dd if=/dev/urandom of=$DIR/$( printf %03d "$n" ).txt bs=1 count=$(( RANDOM % 4000));
+for n in {1..2000}; do
+    DIR=$ROOT_OUICHEFS/`ls $ROOT_OUICHEFS | sort -R | tail -1`
+    touch $DIR/$( printf %04d "$n" ).txt;
+    dd if=/dev/urandom of=$DIR/$( printf %04d "$n" ).txt bs=1 count=$(( RANDOM % 4000));
     sync;
 done
 
 
-rm -r /mnt/PNLProject/*
+rm -r $ROOT_OUICHEFS/*
 
-umount /mnt/PNLProject
-rm -r /mnt/PNLProject
+umount $ROOT_OUICHEFS
+rm -r $ROOT_OUICHEFS
 rmmod ~/share/PNLProject/ouichefs.ko
