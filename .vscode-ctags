@@ -1,0 +1,297 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	/a3c87ab5/
+OUICHEFS_BLOCK_SIZE	PnlGrp5/src_fs/ouichefs.h	/^#define OUICHEFS_BLOCK_SIZE /;"	d
+OUICHEFS_BLOCK_SIZE	mkfs/mkfs-ouichefs.c	/^#define OUICHEFS_BLOCK_SIZE /;"	d	file:
+OUICHEFS_BLOCK_SIZE	src_fs/ouichefs.h	/^#define OUICHEFS_BLOCK_SIZE /;"	d
+OUICHEFS_FILENAME_LEN	PnlGrp5/src_fs/ouichefs.h	/^#define OUICHEFS_FILENAME_LEN /;"	d
+OUICHEFS_FILENAME_LEN	mkfs/mkfs-ouichefs.c	/^#define OUICHEFS_FILENAME_LEN /;"	d	file:
+OUICHEFS_FILENAME_LEN	src_fs/ouichefs.h	/^#define OUICHEFS_FILENAME_LEN /;"	d
+OUICHEFS_INODE	PnlGrp5/src_fs/ouichefs.h	/^#define OUICHEFS_INODE(/;"	d
+OUICHEFS_INODE	src_fs/ouichefs.h	/^#define OUICHEFS_INODE(/;"	d
+OUICHEFS_INODES_PER_BLOCK	PnlGrp5/src_fs/ouichefs.h	/^#define OUICHEFS_INODES_PER_BLOCK /;"	d
+OUICHEFS_INODES_PER_BLOCK	mkfs/mkfs-ouichefs.c	/^#define OUICHEFS_INODES_PER_BLOCK /;"	d	file:
+OUICHEFS_INODES_PER_BLOCK	src_fs/ouichefs.h	/^#define OUICHEFS_INODES_PER_BLOCK /;"	d
+OUICHEFS_MAGIC	PnlGrp5/src_fs/ouichefs.h	/^#define OUICHEFS_MAGIC /;"	d
+OUICHEFS_MAGIC	mkfs/mkfs-ouichefs.c	/^#define OUICHEFS_MAGIC /;"	d	file:
+OUICHEFS_MAGIC	src_fs/ouichefs.h	/^#define OUICHEFS_MAGIC /;"	d
+OUICHEFS_MAX_FILESIZE	PnlGrp5/src_fs/ouichefs.h	/^#define OUICHEFS_MAX_FILESIZE /;"	d
+OUICHEFS_MAX_FILESIZE	mkfs/mkfs-ouichefs.c	/^#define OUICHEFS_MAX_FILESIZE /;"	d	file:
+OUICHEFS_MAX_FILESIZE	src_fs/ouichefs.h	/^#define OUICHEFS_MAX_FILESIZE /;"	d
+OUICHEFS_MAX_PATH	PnlGrp5/src_fs/ouichefs.h	/^#define OUICHEFS_MAX_PATH /;"	d
+OUICHEFS_MAX_PATH	src_fs/ouichefs.h	/^#define OUICHEFS_MAX_PATH /;"	d
+OUICHEFS_MAX_SUBFILES	PnlGrp5/src_fs/ouichefs.h	/^#define OUICHEFS_MAX_SUBFILES /;"	d
+OUICHEFS_MAX_SUBFILES	mkfs/mkfs-ouichefs.c	/^#define OUICHEFS_MAX_SUBFILES /;"	d	file:
+OUICHEFS_MAX_SUBFILES	src_fs/ouichefs.h	/^#define OUICHEFS_MAX_SUBFILES /;"	d
+OUICHEFS_SB	PnlGrp5/src_fs/ouichefs.h	/^#define OUICHEFS_SB(/;"	d
+OUICHEFS_SB	src_fs/ouichefs.h	/^#define OUICHEFS_SB(/;"	d
+OUICHEFS_SB_BLOCK_NR	PnlGrp5/src_fs/ouichefs.h	/^#define OUICHEFS_SB_BLOCK_NR /;"	d
+OUICHEFS_SB_BLOCK_NR	mkfs/mkfs-ouichefs.c	/^#define OUICHEFS_SB_BLOCK_NR /;"	d	file:
+OUICHEFS_SB_BLOCK_NR	src_fs/ouichefs.h	/^#define OUICHEFS_SB_BLOCK_NR /;"	d
+REMOVE1	PnlGrp5/src_fs/fs.c	/^#define REMOVE1 /;"	d	file:
+REMOVE1	src_fs/fs.c	/^#define REMOVE1 /;"	d	file:
+REMOVE2	PnlGrp5/src_fs/fs.c	/^#define REMOVE2 /;"	d	file:
+REMOVE2	src_fs/fs.c	/^#define REMOVE2 /;"	d	file:
+X	PnlGrp5/src_fs/ouichefs.h	/^#define X /;"	d
+X	src_fs/ouichefs.h	/^#define X /;"	d
+_OUICHEFS_BITMAP_H	PnlGrp5/src_fs/bitmap.h	/^#define _OUICHEFS_BITMAP_H$/;"	d
+_OUICHEFS_BITMAP_H	src_fs/bitmap.h	/^#define _OUICHEFS_BITMAP_H$/;"	d
+_OUICHEFS_H	PnlGrp5/src_fs/ouichefs.h	/^#define _OUICHEFS_H$/;"	d
+_OUICHEFS_H	src_fs/ouichefs.h	/^#define _OUICHEFS_H$/;"	d
+__remove_lru_file	PnlGrp5/src_fs/ex1.c	/^void __remove_lru_file(struct dentry *root, struct dentry **d_to_remove)$/;"	f	typeref:typename:void
+__remove_lru_file	src_fs/ex1.c	/^void __remove_lru_file(struct dentry *root, struct dentry **d_to_remove)$/;"	f	typeref:typename:void
+__remove_the_bigger_file	PnlGrp5/src_mod/mod_remove_bigger/mod_remove_bigger.c	/^void __remove_the_bigger_file(struct dentry *root,$/;"	f	typeref:typename:void
+__remove_the_bigger_file	src_mod/mod_remove_bigger/mod_remove_bigger.c	/^void __remove_the_bigger_file(struct dentry *root,$/;"	f	typeref:typename:void
+bfree_bitmap	PnlGrp5/src_fs/ouichefs.h	/^	unsigned long *bfree_bitmap; \/* In-memory free blocks bitmap *\/$/;"	m	struct:ouichefs_sb_info	typeref:typename:unsigned long *
+bfree_bitmap	src_fs/ouichefs.h	/^	unsigned long *bfree_bitmap; \/* In-memory free blocks bitmap *\/$/;"	m	struct:ouichefs_sb_info	typeref:typename:unsigned long *
+blocks	PnlGrp5/src_fs/ouichefs.h	/^	uint32_t blocks[OUICHEFS_BLOCK_SIZE >> 2];$/;"	m	struct:ouichefs_file_index_block	typeref:typename:uint32_t[]
+blocks	mkfs/mkfs-ouichefs.c	/^	uint32_t blocks[OUICHEFS_BLOCK_SIZE >> 2];$/;"	m	struct:ouichefs_file_index_block	typeref:typename:uint32_t[]	file:
+blocks	src_fs/ouichefs.h	/^	uint32_t blocks[OUICHEFS_BLOCK_SIZE >> 2];$/;"	m	struct:ouichefs_file_index_block	typeref:typename:uint32_t[]
+clear_a_file	PnlGrp5/src_fs/ouichefs.h	/^	int (*clear_a_file)(struct dentry *root);$/;"	m	struct:ouichefs_politic	typeref:typename:int (*)(struct dentry * root)
+clear_a_file	src_fs/ouichefs.h	/^	int (*clear_a_file)(struct dentry *root);$/;"	m	struct:ouichefs_politic	typeref:typename:int (*)(struct dentry * root)
+clear_a_file_in_dir	PnlGrp5/src_fs/ouichefs.h	/^	int (*clear_a_file_in_dir)(struct dentry *dir, int nb_files);$/;"	m	struct:ouichefs_politic	typeref:typename:int (*)(struct dentry * dir,int nb_files)
+clear_a_file_in_dir	src_fs/ouichefs.h	/^	int (*clear_a_file_in_dir)(struct dentry *dir, int nb_files);$/;"	m	struct:ouichefs_politic	typeref:typename:int (*)(struct dentry * dir,int nb_files)
+clear_a_file_old	PnlGrp5/src_mod/mod_does_nothing/mod_does_nothing.c	/^static int (*clear_a_file_old)(struct dentry *root);$/;"	v	typeref:typename:int (*)(struct dentry * root)	file:
+clear_a_file_old	PnlGrp5/src_mod/mod_remove_bigger/mod_remove_bigger.c	/^static int (*clear_a_file_old)(struct dentry *root);$/;"	v	typeref:typename:int (*)(struct dentry * root)	file:
+clear_a_file_old	src_mod/mod_does_nothing/mod_does_nothing.c	/^static int (*clear_a_file_old)(struct dentry *root);$/;"	v	typeref:typename:int (*)(struct dentry * root)	file:
+clear_a_file_old	src_mod/mod_remove_bigger/mod_remove_bigger.c	/^static int (*clear_a_file_old)(struct dentry *root);$/;"	v	typeref:typename:int (*)(struct dentry * root)	file:
+clear_nothing	PnlGrp5/src_mod/mod_does_nothing/mod_does_nothing.c	/^int clear_nothing(struct dentry *root)$/;"	f	typeref:typename:int
+clear_nothing	src_mod/mod_does_nothing/mod_does_nothing.c	/^int clear_nothing(struct dentry *root)$/;"	f	typeref:typename:int
+filename	PnlGrp5/src_fs/ouichefs.h	/^		char filename[OUICHEFS_FILENAME_LEN];$/;"	m	struct:ouichefs_dir_block::ouichefs_file	typeref:typename:char[]
+filename	mkfs/mkfs-ouichefs.c	/^		char filename[OUICHEFS_FILENAME_LEN];$/;"	m	struct:ouichefs_dir_block::ouichefs_file	typeref:typename:char[]	file:
+filename	src_fs/ouichefs.h	/^		char filename[OUICHEFS_FILENAME_LEN];$/;"	m	struct:ouichefs_dir_block::ouichefs_file	typeref:typename:char[]
+files	PnlGrp5/src_fs/ouichefs.h	/^	} files[OUICHEFS_MAX_SUBFILES];$/;"	m	struct:ouichefs_dir_block	typeref:struct:ouichefs_dir_block::ouichefs_file[]
+files	mkfs/mkfs-ouichefs.c	/^	} files[OUICHEFS_MAX_SUBFILES];$/;"	m	struct:ouichefs_dir_block	typeref:struct:ouichefs_dir_block::ouichefs_file[]	file:
+files	src_fs/ouichefs.h	/^	} files[OUICHEFS_MAX_SUBFILES];$/;"	m	struct:ouichefs_dir_block	typeref:struct:ouichefs_dir_block::ouichefs_file[]
+get_first_free_bit	PnlGrp5/src_fs/bitmap.h	/^static inline uint32_t get_first_free_bit(unsigned long *freemap,$/;"	f	typeref:typename:uint32_t
+get_first_free_bit	src_fs/bitmap.h	/^static inline uint32_t get_first_free_bit(unsigned long *freemap,$/;"	f	typeref:typename:uint32_t
+get_free_block	PnlGrp5/src_fs/bitmap.h	/^static inline uint32_t get_free_block(struct ouichefs_sb_info *sbi)$/;"	f	typeref:typename:uint32_t
+get_free_block	src_fs/bitmap.h	/^static inline uint32_t get_free_block(struct ouichefs_sb_info *sbi)$/;"	f	typeref:typename:uint32_t
+get_free_inode	PnlGrp5/src_fs/bitmap.h	/^static inline uint32_t get_free_inode(struct ouichefs_sb_info *sbi)$/;"	f	typeref:typename:uint32_t
+get_free_inode	src_fs/bitmap.h	/^static inline uint32_t get_free_inode(struct ouichefs_sb_info *sbi)$/;"	f	typeref:typename:uint32_t
+get_root_dentry	PnlGrp5/src_fs/ex1.c	/^struct dentry *get_root_dentry(struct dentry *d)$/;"	f	typeref:struct:dentry *
+get_root_dentry	src_fs/ex1.c	/^struct dentry *get_root_dentry(struct dentry *d)$/;"	f	typeref:struct:dentry *
+hide_exit	PnlGrp5/src_mod/mod_does_nothing/mod_does_nothing.c	/^static void __exit hide_exit(void)$/;"	f	typeref:typename:void __exit	file:
+hide_exit	PnlGrp5/src_mod/mod_remove_bigger/mod_remove_bigger.c	/^static void __exit hide_exit(void)$/;"	f	typeref:typename:void __exit	file:
+hide_exit	src_mod/mod_does_nothing/mod_does_nothing.c	/^static void __exit hide_exit(void)$/;"	f	typeref:typename:void __exit	file:
+hide_exit	src_mod/mod_remove_bigger/mod_remove_bigger.c	/^static void __exit hide_exit(void)$/;"	f	typeref:typename:void __exit	file:
+hide_init	PnlGrp5/src_mod/mod_does_nothing/mod_does_nothing.c	/^static int __init hide_init(void)$/;"	f	typeref:typename:int __init	file:
+hide_init	PnlGrp5/src_mod/mod_remove_bigger/mod_remove_bigger.c	/^static int __init hide_init(void)$/;"	f	typeref:typename:int __init	file:
+hide_init	src_mod/mod_does_nothing/mod_does_nothing.c	/^static int __init hide_init(void)$/;"	f	typeref:typename:int __init	file:
+hide_init	src_mod/mod_remove_bigger/mod_remove_bigger.c	/^static int __init hide_init(void)$/;"	f	typeref:typename:int __init	file:
+i_atime	PnlGrp5/src_fs/ouichefs.h	/^	uint32_t i_atime;	\/* Access time *\/$/;"	m	struct:ouichefs_inode	typeref:typename:uint32_t
+i_atime	mkfs/mkfs-ouichefs.c	/^	uint32_t i_atime;	  \/* Access time *\/$/;"	m	struct:ouichefs_inode	typeref:typename:uint32_t	file:
+i_atime	src_fs/ouichefs.h	/^	uint32_t i_atime;	\/* Access time *\/$/;"	m	struct:ouichefs_inode	typeref:typename:uint32_t
+i_blocks	PnlGrp5/src_fs/ouichefs.h	/^	uint32_t i_blocks;	\/* Block count *\/$/;"	m	struct:ouichefs_inode	typeref:typename:uint32_t
+i_blocks	mkfs/mkfs-ouichefs.c	/^	uint32_t i_blocks;	  \/* Block count (subdir count for directories) *\/$/;"	m	struct:ouichefs_inode	typeref:typename:uint32_t	file:
+i_blocks	src_fs/ouichefs.h	/^	uint32_t i_blocks;	\/* Block count *\/$/;"	m	struct:ouichefs_inode	typeref:typename:uint32_t
+i_ctime	PnlGrp5/src_fs/ouichefs.h	/^	uint32_t i_ctime;	\/* Inode change time *\/$/;"	m	struct:ouichefs_inode	typeref:typename:uint32_t
+i_ctime	mkfs/mkfs-ouichefs.c	/^	uint32_t i_ctime;	  \/* Inode change time *\/$/;"	m	struct:ouichefs_inode	typeref:typename:uint32_t	file:
+i_ctime	src_fs/ouichefs.h	/^	uint32_t i_ctime;	\/* Inode change time *\/$/;"	m	struct:ouichefs_inode	typeref:typename:uint32_t
+i_gid	PnlGrp5/src_fs/ouichefs.h	/^	uint32_t i_gid;		\/* Group id *\/$/;"	m	struct:ouichefs_inode	typeref:typename:uint32_t
+i_gid	mkfs/mkfs-ouichefs.c	/^	uint32_t i_gid;		  \/* Group id *\/$/;"	m	struct:ouichefs_inode	typeref:typename:uint32_t	file:
+i_gid	src_fs/ouichefs.h	/^	uint32_t i_gid;		\/* Group id *\/$/;"	m	struct:ouichefs_inode	typeref:typename:uint32_t
+i_mode	PnlGrp5/src_fs/ouichefs.h	/^	uint32_t i_mode;	\/* File mode *\/$/;"	m	struct:ouichefs_inode	typeref:typename:uint32_t
+i_mode	mkfs/mkfs-ouichefs.c	/^	mode_t   i_mode;	  \/* File mode *\/$/;"	m	struct:ouichefs_inode	typeref:typename:mode_t	file:
+i_mode	src_fs/ouichefs.h	/^	uint32_t i_mode;	\/* File mode *\/$/;"	m	struct:ouichefs_inode	typeref:typename:uint32_t
+i_mtime	PnlGrp5/src_fs/ouichefs.h	/^	uint32_t i_mtime;	\/* Modification time *\/$/;"	m	struct:ouichefs_inode	typeref:typename:uint32_t
+i_mtime	mkfs/mkfs-ouichefs.c	/^	uint32_t i_mtime;	  \/* Modification time *\/$/;"	m	struct:ouichefs_inode	typeref:typename:uint32_t	file:
+i_mtime	src_fs/ouichefs.h	/^	uint32_t i_mtime;	\/* Modification time *\/$/;"	m	struct:ouichefs_inode	typeref:typename:uint32_t
+i_nlink	PnlGrp5/src_fs/ouichefs.h	/^	uint32_t i_nlink;	\/* Hard links count *\/$/;"	m	struct:ouichefs_inode	typeref:typename:uint32_t
+i_nlink	mkfs/mkfs-ouichefs.c	/^	uint32_t i_nlink;	  \/* Hard links count *\/$/;"	m	struct:ouichefs_inode	typeref:typename:uint32_t	file:
+i_nlink	src_fs/ouichefs.h	/^	uint32_t i_nlink;	\/* Hard links count *\/$/;"	m	struct:ouichefs_inode	typeref:typename:uint32_t
+i_size	PnlGrp5/src_fs/ouichefs.h	/^	uint32_t i_size;	\/* Size in bytes *\/$/;"	m	struct:ouichefs_inode	typeref:typename:uint32_t
+i_size	mkfs/mkfs-ouichefs.c	/^	uint32_t i_size;	  \/* Size in bytes *\/$/;"	m	struct:ouichefs_inode	typeref:typename:uint32_t	file:
+i_size	src_fs/ouichefs.h	/^	uint32_t i_size;	\/* Size in bytes *\/$/;"	m	struct:ouichefs_inode	typeref:typename:uint32_t
+i_uid	PnlGrp5/src_fs/ouichefs.h	/^	uint32_t i_uid;         \/* Owner id *\/$/;"	m	struct:ouichefs_inode	typeref:typename:uint32_t
+i_uid	mkfs/mkfs-ouichefs.c	/^	uint32_t i_uid;           \/* Owner id *\/$/;"	m	struct:ouichefs_inode	typeref:typename:uint32_t	file:
+i_uid	src_fs/ouichefs.h	/^	uint32_t i_uid;         \/* Owner id *\/$/;"	m	struct:ouichefs_inode	typeref:typename:uint32_t
+idiv_ceil	mkfs/mkfs-ouichefs.c	/^static inline uint32_t idiv_ceil(uint32_t a, uint32_t b)$/;"	f	typeref:typename:uint32_t	file:
+ifree_bitmap	PnlGrp5/src_fs/ouichefs.h	/^	unsigned long *ifree_bitmap; \/* In-memory free inodes bitmap *\/$/;"	m	struct:ouichefs_sb_info	typeref:typename:unsigned long *
+ifree_bitmap	src_fs/ouichefs.h	/^	unsigned long *ifree_bitmap; \/* In-memory free inodes bitmap *\/$/;"	m	struct:ouichefs_sb_info	typeref:typename:unsigned long *
+index_block	PnlGrp5/src_fs/ouichefs.h	/^	uint32_t index_block;	\/* Block with list of blocks for this file *\/$/;"	m	struct:ouichefs_inode	typeref:typename:uint32_t
+index_block	PnlGrp5/src_fs/ouichefs.h	/^	uint32_t index_block;$/;"	m	struct:ouichefs_inode_info	typeref:typename:uint32_t
+index_block	mkfs/mkfs-ouichefs.c	/^	uint32_t index_block;	  \/* Block with list of blocks for this file *\/$/;"	m	struct:ouichefs_inode	typeref:typename:uint32_t	file:
+index_block	src_fs/ouichefs.h	/^	uint32_t index_block;	\/* Block with list of blocks for this file *\/$/;"	m	struct:ouichefs_inode	typeref:typename:uint32_t
+index_block	src_fs/ouichefs.h	/^	uint32_t index_block;$/;"	m	struct:ouichefs_inode_info	typeref:typename:uint32_t
+inode	PnlGrp5/src_fs/ouichefs.h	/^		uint32_t inode;$/;"	m	struct:ouichefs_dir_block::ouichefs_file	typeref:typename:uint32_t
+inode	mkfs/mkfs-ouichefs.c	/^		uint32_t inode;$/;"	m	struct:ouichefs_dir_block::ouichefs_file	typeref:typename:uint32_t	file:
+inode	src_fs/ouichefs.h	/^		uint32_t inode;$/;"	m	struct:ouichefs_dir_block::ouichefs_file	typeref:typename:uint32_t
+magic	PnlGrp5/src_fs/ouichefs.h	/^	uint32_t magic;	        \/* Magic number *\/$/;"	m	struct:ouichefs_sb_info	typeref:typename:uint32_t
+magic	mkfs/mkfs-ouichefs.c	/^	uint32_t magic;		  \/* Magic number *\/$/;"	m	struct:ouichefs_superblock	typeref:typename:uint32_t	file:
+magic	src_fs/ouichefs.h	/^	uint32_t magic;	        \/* Magic number *\/$/;"	m	struct:ouichefs_sb_info	typeref:typename:uint32_t
+main	mkfs/mkfs-ouichefs.c	/^int main(int argc, char **argv)$/;"	f	typeref:typename:int
+nb_file_in_dir	PnlGrp5/src_fs/ex1.c	/^int nb_file_in_dir(struct dentry *dir)$/;"	f	typeref:typename:int
+nb_file_in_dir	src_fs/ex1.c	/^int nb_file_in_dir(struct dentry *dir)$/;"	f	typeref:typename:int
+nr_bfree_blocks	PnlGrp5/src_fs/ouichefs.h	/^	uint32_t nr_bfree_blocks; \/* Number of block free bitmap blocks *\/$/;"	m	struct:ouichefs_sb_info	typeref:typename:uint32_t
+nr_bfree_blocks	mkfs/mkfs-ouichefs.c	/^	uint32_t nr_bfree_blocks; \/* Number of free blocks bitmask blocks *\/$/;"	m	struct:ouichefs_superblock	typeref:typename:uint32_t	file:
+nr_bfree_blocks	src_fs/ouichefs.h	/^	uint32_t nr_bfree_blocks; \/* Number of block free bitmap blocks *\/$/;"	m	struct:ouichefs_sb_info	typeref:typename:uint32_t
+nr_blocks	PnlGrp5/src_fs/ouichefs.h	/^	uint32_t nr_blocks;      \/* Total number of blocks (incl sb & inodes) *\/$/;"	m	struct:ouichefs_sb_info	typeref:typename:uint32_t
+nr_blocks	mkfs/mkfs-ouichefs.c	/^	uint32_t nr_blocks;	  \/* Total number of blocks (incl sb & inodes) *\/$/;"	m	struct:ouichefs_superblock	typeref:typename:uint32_t	file:
+nr_blocks	src_fs/ouichefs.h	/^	uint32_t nr_blocks;      \/* Total number of blocks (incl sb & inodes) *\/$/;"	m	struct:ouichefs_sb_info	typeref:typename:uint32_t
+nr_free_blocks	PnlGrp5/src_fs/ouichefs.h	/^	uint32_t nr_free_blocks;  \/* Number of free blocks *\/$/;"	m	struct:ouichefs_sb_info	typeref:typename:uint32_t
+nr_free_blocks	mkfs/mkfs-ouichefs.c	/^	uint32_t nr_free_blocks;  \/* Number of free blocks *\/$/;"	m	struct:ouichefs_superblock	typeref:typename:uint32_t	file:
+nr_free_blocks	src_fs/ouichefs.h	/^	uint32_t nr_free_blocks;  \/* Number of free blocks *\/$/;"	m	struct:ouichefs_sb_info	typeref:typename:uint32_t
+nr_free_inodes	PnlGrp5/src_fs/ouichefs.h	/^	uint32_t nr_free_inodes;  \/* Number of free inodes *\/$/;"	m	struct:ouichefs_sb_info	typeref:typename:uint32_t
+nr_free_inodes	mkfs/mkfs-ouichefs.c	/^	uint32_t nr_free_inodes;  \/* Number of free inodes *\/$/;"	m	struct:ouichefs_superblock	typeref:typename:uint32_t	file:
+nr_free_inodes	src_fs/ouichefs.h	/^	uint32_t nr_free_inodes;  \/* Number of free inodes *\/$/;"	m	struct:ouichefs_sb_info	typeref:typename:uint32_t
+nr_ifree_blocks	PnlGrp5/src_fs/ouichefs.h	/^	uint32_t nr_ifree_blocks; \/* Number of inode free bitmap blocks *\/$/;"	m	struct:ouichefs_sb_info	typeref:typename:uint32_t
+nr_ifree_blocks	mkfs/mkfs-ouichefs.c	/^	uint32_t nr_ifree_blocks; \/* Number of free inodes bitmask blocks *\/$/;"	m	struct:ouichefs_superblock	typeref:typename:uint32_t	file:
+nr_ifree_blocks	src_fs/ouichefs.h	/^	uint32_t nr_ifree_blocks; \/* Number of inode free bitmap blocks *\/$/;"	m	struct:ouichefs_sb_info	typeref:typename:uint32_t
+nr_inodes	PnlGrp5/src_fs/ouichefs.h	/^	uint32_t nr_inodes;      \/* Total number of inodes *\/$/;"	m	struct:ouichefs_sb_info	typeref:typename:uint32_t
+nr_inodes	mkfs/mkfs-ouichefs.c	/^	uint32_t nr_inodes;       \/* Total number of inodes *\/$/;"	m	struct:ouichefs_superblock	typeref:typename:uint32_t	file:
+nr_inodes	src_fs/ouichefs.h	/^	uint32_t nr_inodes;      \/* Total number of inodes *\/$/;"	m	struct:ouichefs_sb_info	typeref:typename:uint32_t
+nr_istore_blocks	PnlGrp5/src_fs/ouichefs.h	/^	uint32_t nr_istore_blocks;\/* Number of inode store blocks *\/$/;"	m	struct:ouichefs_sb_info	typeref:typename:uint32_t
+nr_istore_blocks	mkfs/mkfs-ouichefs.c	/^	uint32_t nr_istore_blocks;\/* Number of inode store blocks *\/$/;"	m	struct:ouichefs_superblock	typeref:typename:uint32_t	file:
+nr_istore_blocks	src_fs/ouichefs.h	/^	uint32_t nr_istore_blocks;\/* Number of inode store blocks *\/$/;"	m	struct:ouichefs_sb_info	typeref:typename:uint32_t
+ouichefs_alloc_inode	PnlGrp5/src_fs/super.c	/^static struct inode *ouichefs_alloc_inode(struct super_block *sb)$/;"	f	typeref:struct:inode *	file:
+ouichefs_alloc_inode	src_fs/super.c	/^static struct inode *ouichefs_alloc_inode(struct super_block *sb)$/;"	f	typeref:struct:inode *	file:
+ouichefs_aops	PnlGrp5/src_fs/file.c	/^const struct address_space_operations ouichefs_aops = {$/;"	v	typeref:typename:const struct address_space_operations
+ouichefs_aops	src_fs/file.c	/^const struct address_space_operations ouichefs_aops = {$/;"	v	typeref:typename:const struct address_space_operations
+ouichefs_attribute	PnlGrp5/src_fs/fs.c	/^struct kobj_attribute ouichefs_attribute =$/;"	v	typeref:struct:kobj_attribute
+ouichefs_attribute	src_fs/fs.c	/^struct kobj_attribute ouichefs_attribute =$/;"	v	typeref:struct:kobj_attribute
+ouichefs_create	PnlGrp5/src_fs/inode.c	/^static int ouichefs_create(struct inode *dir, struct dentry *dentry,$/;"	f	typeref:typename:int	file:
+ouichefs_create	src_fs/inode.c	/^static int ouichefs_create(struct inode *dir, struct dentry *dentry,$/;"	f	typeref:typename:int	file:
+ouichefs_destroy_inode	PnlGrp5/src_fs/super.c	/^static void ouichefs_destroy_inode(struct inode *inode)$/;"	f	typeref:typename:void	file:
+ouichefs_destroy_inode	src_fs/super.c	/^static void ouichefs_destroy_inode(struct inode *inode)$/;"	f	typeref:typename:void	file:
+ouichefs_destroy_inode_cache	PnlGrp5/src_fs/super.c	/^void ouichefs_destroy_inode_cache(void)$/;"	f	typeref:typename:void
+ouichefs_destroy_inode_cache	src_fs/super.c	/^void ouichefs_destroy_inode_cache(void)$/;"	f	typeref:typename:void
+ouichefs_dir_block	PnlGrp5/src_fs/ouichefs.h	/^struct ouichefs_dir_block {$/;"	s
+ouichefs_dir_block	mkfs/mkfs-ouichefs.c	/^struct ouichefs_dir_block {$/;"	s	file:
+ouichefs_dir_block	src_fs/ouichefs.h	/^struct ouichefs_dir_block {$/;"	s
+ouichefs_dir_ops	PnlGrp5/src_fs/dir.c	/^const struct file_operations ouichefs_dir_ops = {$/;"	v	typeref:typename:const struct file_operations
+ouichefs_dir_ops	src_fs/dir.c	/^const struct file_operations ouichefs_dir_ops = {$/;"	v	typeref:typename:const struct file_operations
+ouichefs_exit	PnlGrp5/src_fs/fs.c	/^static void __exit ouichefs_exit(void)$/;"	f	typeref:typename:void __exit	file:
+ouichefs_exit	src_fs/fs.c	/^static void __exit ouichefs_exit(void)$/;"	f	typeref:typename:void __exit	file:
+ouichefs_file	PnlGrp5/src_fs/ouichefs.h	/^	struct ouichefs_file {$/;"	s	struct:ouichefs_dir_block
+ouichefs_file	mkfs/mkfs-ouichefs.c	/^	struct ouichefs_file {$/;"	s	struct:ouichefs_dir_block	file:
+ouichefs_file	src_fs/ouichefs.h	/^	struct ouichefs_file {$/;"	s	struct:ouichefs_dir_block
+ouichefs_file_get_block	PnlGrp5/src_fs/file.c	/^static int ouichefs_file_get_block(struct inode *inode, sector_t iblock,$/;"	f	typeref:typename:int	file:
+ouichefs_file_get_block	src_fs/file.c	/^static int ouichefs_file_get_block(struct inode *inode, sector_t iblock,$/;"	f	typeref:typename:int	file:
+ouichefs_file_index_block	PnlGrp5/src_fs/ouichefs.h	/^struct ouichefs_file_index_block {$/;"	s
+ouichefs_file_index_block	mkfs/mkfs-ouichefs.c	/^struct ouichefs_file_index_block {$/;"	s	file:
+ouichefs_file_index_block	src_fs/ouichefs.h	/^struct ouichefs_file_index_block {$/;"	s
+ouichefs_file_ops	PnlGrp5/src_fs/file.c	/^const struct file_operations ouichefs_file_ops = {$/;"	v	typeref:typename:const struct file_operations
+ouichefs_file_ops	src_fs/file.c	/^const struct file_operations ouichefs_file_ops = {$/;"	v	typeref:typename:const struct file_operations
+ouichefs_file_system_type	PnlGrp5/src_fs/fs.c	/^static struct file_system_type ouichefs_file_system_type = {$/;"	v	typeref:struct:file_system_type	file:
+ouichefs_file_system_type	src_fs/fs.c	/^static struct file_system_type ouichefs_file_system_type = {$/;"	v	typeref:struct:file_system_type	file:
+ouichefs_fill_super	PnlGrp5/src_fs/super.c	/^int ouichefs_fill_super(struct super_block *sb, void *data, int silent)$/;"	f	typeref:typename:int
+ouichefs_fill_super	src_fs/super.c	/^int ouichefs_fill_super(struct super_block *sb, void *data, int silent)$/;"	f	typeref:typename:int
+ouichefs_iget	PnlGrp5/src_fs/inode.c	/^struct inode *ouichefs_iget(struct super_block *sb, unsigned long ino)$/;"	f	typeref:struct:inode *
+ouichefs_iget	src_fs/inode.c	/^struct inode *ouichefs_iget(struct super_block *sb, unsigned long ino)$/;"	f	typeref:struct:inode *
+ouichefs_init	PnlGrp5/src_fs/fs.c	/^static int __init ouichefs_init(void)$/;"	f	typeref:typename:int __init	file:
+ouichefs_init	src_fs/fs.c	/^static int __init ouichefs_init(void)$/;"	f	typeref:typename:int __init	file:
+ouichefs_init_inode_cache	PnlGrp5/src_fs/super.c	/^int ouichefs_init_inode_cache(void)$/;"	f	typeref:typename:int
+ouichefs_init_inode_cache	src_fs/super.c	/^int ouichefs_init_inode_cache(void)$/;"	f	typeref:typename:int
+ouichefs_inode	PnlGrp5/src_fs/ouichefs.h	/^struct ouichefs_inode {$/;"	s
+ouichefs_inode	mkfs/mkfs-ouichefs.c	/^struct ouichefs_inode {$/;"	s	file:
+ouichefs_inode	src_fs/ouichefs.h	/^struct ouichefs_inode {$/;"	s
+ouichefs_inode_cache	PnlGrp5/src_fs/super.c	/^static struct kmem_cache *ouichefs_inode_cache;$/;"	v	typeref:struct:kmem_cache *	file:
+ouichefs_inode_cache	src_fs/super.c	/^static struct kmem_cache *ouichefs_inode_cache;$/;"	v	typeref:struct:kmem_cache *	file:
+ouichefs_inode_info	PnlGrp5/src_fs/ouichefs.h	/^struct ouichefs_inode_info {$/;"	s
+ouichefs_inode_info	src_fs/ouichefs.h	/^struct ouichefs_inode_info {$/;"	s
+ouichefs_inode_ops	PnlGrp5/src_fs/inode.c	/^const struct inode_operations ouichefs_inode_ops = {$/;"	v	typeref:typename:const struct inode_operations
+ouichefs_inode_ops	PnlGrp5/src_fs/inode.c	/^const struct inode_operations ouichefs_inode_ops;$/;"	v	typeref:typename:const struct inode_operations
+ouichefs_inode_ops	src_fs/inode.c	/^const struct inode_operations ouichefs_inode_ops = {$/;"	v	typeref:typename:const struct inode_operations
+ouichefs_inode_ops	src_fs/inode.c	/^const struct inode_operations ouichefs_inode_ops;$/;"	v	typeref:typename:const struct inode_operations
+ouichefs_iterate	PnlGrp5/src_fs/dir.c	/^static int ouichefs_iterate(struct file *dir, struct dir_context *ctx)$/;"	f	typeref:typename:int	file:
+ouichefs_iterate	src_fs/dir.c	/^static int ouichefs_iterate(struct file *dir, struct dir_context *ctx)$/;"	f	typeref:typename:int	file:
+ouichefs_kill_sb	PnlGrp5/src_fs/fs.c	/^void ouichefs_kill_sb(struct super_block *sb)$/;"	f	typeref:typename:void
+ouichefs_kill_sb	src_fs/fs.c	/^void ouichefs_kill_sb(struct super_block *sb)$/;"	f	typeref:typename:void
+ouichefs_kobj	PnlGrp5/src_fs/fs.c	/^struct kobject *ouichefs_kobj;$/;"	v	typeref:struct:kobject *
+ouichefs_kobj	src_fs/fs.c	/^struct kobject *ouichefs_kobj;$/;"	v	typeref:struct:kobject *
+ouichefs_lookup	PnlGrp5/src_fs/inode.c	/^static struct dentry *ouichefs_lookup(struct inode *dir, struct dentry *dentry,$/;"	f	typeref:struct:dentry *	file:
+ouichefs_lookup	src_fs/inode.c	/^static struct dentry *ouichefs_lookup(struct inode *dir, struct dentry *dentry,$/;"	f	typeref:struct:dentry *	file:
+ouichefs_mkdir	PnlGrp5/src_fs/inode.c	/^static int ouichefs_mkdir(struct inode *dir, struct dentry *dentry,$/;"	f	typeref:typename:int	file:
+ouichefs_mkdir	src_fs/inode.c	/^static int ouichefs_mkdir(struct inode *dir, struct dentry *dentry,$/;"	f	typeref:typename:int	file:
+ouichefs_mount	PnlGrp5/src_fs/fs.c	/^struct dentry *ouichefs_mount(struct file_system_type *fs_type, int flags,$/;"	f	typeref:struct:dentry *
+ouichefs_mount	src_fs/fs.c	/^struct dentry *ouichefs_mount(struct file_system_type *fs_type, int flags,$/;"	f	typeref:struct:dentry *
+ouichefs_new_inode	PnlGrp5/src_fs/inode.c	/^static struct inode *ouichefs_new_inode(struct inode *dir, mode_t mode)$/;"	f	typeref:struct:inode *	file:
+ouichefs_new_inode	src_fs/inode.c	/^static struct inode *ouichefs_new_inode(struct inode *dir, mode_t mode)$/;"	f	typeref:struct:inode *	file:
+ouichefs_politic	PnlGrp5/src_fs/ex2_2.c	/^struct ouichefs_politic ouichefs_politic = {$/;"	v	typeref:struct:ouichefs_politic
+ouichefs_politic	PnlGrp5/src_fs/ouichefs.h	/^struct ouichefs_politic {$/;"	s
+ouichefs_politic	src_fs/ex2_2.c	/^struct ouichefs_politic ouichefs_politic = {$/;"	v	typeref:struct:ouichefs_politic
+ouichefs_politic	src_fs/ouichefs.h	/^struct ouichefs_politic {$/;"	s
+ouichefs_put_super	PnlGrp5/src_fs/super.c	/^static void ouichefs_put_super(struct super_block *sb)$/;"	f	typeref:typename:void	file:
+ouichefs_put_super	src_fs/super.c	/^static void ouichefs_put_super(struct super_block *sb)$/;"	f	typeref:typename:void	file:
+ouichefs_readpage	PnlGrp5/src_fs/file.c	/^static int ouichefs_readpage(struct file *file, struct page *page)$/;"	f	typeref:typename:int	file:
+ouichefs_readpage	src_fs/file.c	/^static int ouichefs_readpage(struct file *file, struct page *page)$/;"	f	typeref:typename:int	file:
+ouichefs_rename	PnlGrp5/src_fs/inode.c	/^static int ouichefs_rename(struct inode *old_dir, struct dentry *old_dentry,$/;"	f	typeref:typename:int	file:
+ouichefs_rename	src_fs/inode.c	/^static int ouichefs_rename(struct inode *old_dir, struct dentry *old_dentry,$/;"	f	typeref:typename:int	file:
+ouichefs_rmdir	PnlGrp5/src_fs/inode.c	/^static int ouichefs_rmdir(struct inode *dir, struct dentry *dentry)$/;"	f	typeref:typename:int	file:
+ouichefs_rmdir	src_fs/inode.c	/^static int ouichefs_rmdir(struct inode *dir, struct dentry *dentry)$/;"	f	typeref:typename:int	file:
+ouichefs_sb_info	PnlGrp5/src_fs/ouichefs.h	/^struct ouichefs_sb_info {$/;"	s
+ouichefs_sb_info	src_fs/ouichefs.h	/^struct ouichefs_sb_info {$/;"	s
+ouichefs_show	PnlGrp5/src_fs/fs.c	/^static ssize_t ouichefs_show(struct kobject *kobj,$/;"	f	typeref:typename:ssize_t	file:
+ouichefs_show	src_fs/fs.c	/^static ssize_t ouichefs_show(struct kobject *kobj,$/;"	f	typeref:typename:ssize_t	file:
+ouichefs_statfs	PnlGrp5/src_fs/super.c	/^static int ouichefs_statfs(struct dentry *dentry, struct kstatfs *stat)$/;"	f	typeref:typename:int	file:
+ouichefs_statfs	src_fs/super.c	/^static int ouichefs_statfs(struct dentry *dentry, struct kstatfs *stat)$/;"	f	typeref:typename:int	file:
+ouichefs_store	PnlGrp5/src_fs/fs.c	/^static ssize_t ouichefs_store(struct kobject *kobj,$/;"	f	typeref:typename:ssize_t	file:
+ouichefs_store	src_fs/fs.c	/^static ssize_t ouichefs_store(struct kobject *kobj,$/;"	f	typeref:typename:ssize_t	file:
+ouichefs_super_ops	PnlGrp5/src_fs/super.c	/^static struct super_operations ouichefs_super_ops = {$/;"	v	typeref:struct:super_operations	file:
+ouichefs_super_ops	src_fs/super.c	/^static struct super_operations ouichefs_super_ops = {$/;"	v	typeref:struct:super_operations	file:
+ouichefs_superblock	mkfs/mkfs-ouichefs.c	/^struct ouichefs_superblock {$/;"	s	file:
+ouichefs_sync_fs	PnlGrp5/src_fs/super.c	/^static int ouichefs_sync_fs(struct super_block *sb, int wait)$/;"	f	typeref:typename:int	file:
+ouichefs_sync_fs	src_fs/super.c	/^static int ouichefs_sync_fs(struct super_block *sb, int wait)$/;"	f	typeref:typename:int	file:
+ouichefs_unlink	PnlGrp5/src_fs/inode.c	/^static int ouichefs_unlink(struct inode *dir, struct dentry *dentry)$/;"	f	typeref:typename:int	file:
+ouichefs_unlink	src_fs/inode.c	/^static int ouichefs_unlink(struct inode *dir, struct dentry *dentry)$/;"	f	typeref:typename:int	file:
+ouichefs_write_begin	PnlGrp5/src_fs/file.c	/^static int ouichefs_write_begin(struct file *file,$/;"	f	typeref:typename:int	file:
+ouichefs_write_begin	src_fs/file.c	/^static int ouichefs_write_begin(struct file *file,$/;"	f	typeref:typename:int	file:
+ouichefs_write_end	PnlGrp5/src_fs/file.c	/^static int ouichefs_write_end(struct file *file, struct address_space *mapping,$/;"	f	typeref:typename:int	file:
+ouichefs_write_end	src_fs/file.c	/^static int ouichefs_write_end(struct file *file, struct address_space *mapping,$/;"	f	typeref:typename:int	file:
+ouichefs_write_inode	PnlGrp5/src_fs/super.c	/^static int ouichefs_write_inode(struct inode *inode,$/;"	f	typeref:typename:int	file:
+ouichefs_write_inode	src_fs/super.c	/^static int ouichefs_write_inode(struct inode *inode,$/;"	f	typeref:typename:int	file:
+ouichefs_writepage	PnlGrp5/src_fs/file.c	/^static int ouichefs_writepage(struct page *page, struct writeback_control *wbc)$/;"	f	typeref:typename:int	file:
+ouichefs_writepage	src_fs/file.c	/^static int ouichefs_writepage(struct page *page, struct writeback_control *wbc)$/;"	f	typeref:typename:int	file:
+padding	mkfs/mkfs-ouichefs.c	/^	char padding[4064];       \/* Padding to match block size *\/$/;"	m	struct:ouichefs_superblock	typeref:typename:char[4064]	file:
+pr_fmt	PnlGrp5/src_fs/dir.c	/^#define pr_fmt(/;"	d	file:
+pr_fmt	PnlGrp5/src_fs/ex1.c	/^#define pr_fmt(/;"	d	file:
+pr_fmt	PnlGrp5/src_fs/ex2_2.c	/^#define pr_fmt(/;"	d	file:
+pr_fmt	PnlGrp5/src_fs/file.c	/^#define pr_fmt(/;"	d	file:
+pr_fmt	PnlGrp5/src_fs/fs.c	/^#define pr_fmt(/;"	d	file:
+pr_fmt	PnlGrp5/src_fs/inode.c	/^#define pr_fmt(/;"	d	file:
+pr_fmt	PnlGrp5/src_fs/super.c	/^#define pr_fmt(/;"	d	file:
+pr_fmt	PnlGrp5/src_mod/mod_does_nothing/mod_does_nothing.c	/^#define pr_fmt(/;"	d	file:
+pr_fmt	PnlGrp5/src_mod/mod_remove_bigger/mod_remove_bigger.c	/^#define pr_fmt(/;"	d	file:
+pr_fmt	src_fs/dir.c	/^#define pr_fmt(/;"	d	file:
+pr_fmt	src_fs/ex1.c	/^#define pr_fmt(/;"	d	file:
+pr_fmt	src_fs/ex2_2.c	/^#define pr_fmt(/;"	d	file:
+pr_fmt	src_fs/file.c	/^#define pr_fmt(/;"	d	file:
+pr_fmt	src_fs/fs.c	/^#define pr_fmt(/;"	d	file:
+pr_fmt	src_fs/inode.c	/^#define pr_fmt(/;"	d	file:
+pr_fmt	src_fs/super.c	/^#define pr_fmt(/;"	d	file:
+pr_fmt	src_mod/mod_does_nothing/mod_does_nothing.c	/^#define pr_fmt(/;"	d	file:
+pr_fmt	src_mod/mod_remove_bigger/mod_remove_bigger.c	/^#define pr_fmt(/;"	d	file:
+put_block	PnlGrp5/src_fs/bitmap.h	/^static inline void put_block(struct ouichefs_sb_info *sbi, uint32_t bno)$/;"	f	typeref:typename:void
+put_block	src_fs/bitmap.h	/^static inline void put_block(struct ouichefs_sb_info *sbi, uint32_t bno)$/;"	f	typeref:typename:void
+put_free_bit	PnlGrp5/src_fs/bitmap.h	/^static inline int put_free_bit(unsigned long *freemap, unsigned long size,$/;"	f	typeref:typename:int
+put_free_bit	src_fs/bitmap.h	/^static inline int put_free_bit(unsigned long *freemap, unsigned long size,$/;"	f	typeref:typename:int
+put_inode	PnlGrp5/src_fs/bitmap.h	/^static inline void put_inode(struct ouichefs_sb_info *sbi, uint32_t ino)$/;"	f	typeref:typename:void
+put_inode	src_fs/bitmap.h	/^static inline void put_inode(struct ouichefs_sb_info *sbi, uint32_t ino)$/;"	f	typeref:typename:void
+remove_LRU_file_of_dir	PnlGrp5/src_fs/ex1.c	/^int remove_LRU_file_of_dir(struct dentry *dir, int nbFiles)$/;"	f	typeref:typename:int
+remove_LRU_file_of_dir	src_fs/ex1.c	/^int remove_LRU_file_of_dir(struct dentry *dir, int nbFiles)$/;"	f	typeref:typename:int
+remove_lru_file	PnlGrp5/src_fs/ex1.c	/^int remove_lru_file(struct dentry *root)$/;"	f	typeref:typename:int
+remove_lru_file	src_fs/ex1.c	/^int remove_lru_file(struct dentry *root)$/;"	f	typeref:typename:int
+remove_the_bigger_file	PnlGrp5/src_mod/mod_remove_bigger/mod_remove_bigger.c	/^int remove_the_bigger_file(struct dentry *root)$/;"	f	typeref:typename:int
+remove_the_bigger_file	src_mod/mod_remove_bigger/mod_remove_bigger.c	/^int remove_the_bigger_file(struct dentry *root)$/;"	f	typeref:typename:int
+set_politic_clear_a_file	PnlGrp5/src_fs/ex2_1.c	/^int set_politic_clear_a_file(int (*new)(struct dentry *))$/;"	f	typeref:typename:int
+set_politic_clear_a_file	src_fs/ex2_1.c	/^int set_politic_clear_a_file(int (*new)(struct dentry *))$/;"	f	typeref:typename:int
+sync_bfree	PnlGrp5/src_fs/super.c	/^static int sync_bfree(struct super_block *sb, int wait)$/;"	f	typeref:typename:int	file:
+sync_bfree	src_fs/super.c	/^static int sync_bfree(struct super_block *sb, int wait)$/;"	f	typeref:typename:int	file:
+sync_ifree	PnlGrp5/src_fs/super.c	/^static int sync_ifree(struct super_block *sb, int wait)$/;"	f	typeref:typename:int	file:
+sync_ifree	src_fs/super.c	/^static int sync_ifree(struct super_block *sb, int wait)$/;"	f	typeref:typename:int	file:
+sync_sb_info	PnlGrp5/src_fs/super.c	/^static int sync_sb_info(struct super_block *sb, int wait)$/;"	f	typeref:typename:int	file:
+sync_sb_info	src_fs/super.c	/^static int sync_sb_info(struct super_block *sb, int wait)$/;"	f	typeref:typename:int	file:
+usage	mkfs/mkfs-ouichefs.c	/^static inline void usage(char *appname)$/;"	f	typeref:typename:void	file:
+vfs_inode	PnlGrp5/src_fs/ouichefs.h	/^	struct inode vfs_inode;$/;"	m	struct:ouichefs_inode_info	typeref:struct:inode
+vfs_inode	src_fs/ouichefs.h	/^	struct inode vfs_inode;$/;"	m	struct:ouichefs_inode_info	typeref:struct:inode
+write_bfree_blocks	mkfs/mkfs-ouichefs.c	/^static int write_bfree_blocks(int fd, struct ouichefs_superblock *sb)$/;"	f	typeref:typename:int	file:
+write_data_blocks	mkfs/mkfs-ouichefs.c	/^static int write_data_blocks(int fd, struct ouichefs_superblock *sb)$/;"	f	typeref:typename:int	file:
+write_ifree_blocks	mkfs/mkfs-ouichefs.c	/^static int write_ifree_blocks(int fd, struct ouichefs_superblock *sb)$/;"	f	typeref:typename:int	file:
+write_inode_store	mkfs/mkfs-ouichefs.c	/^static int write_inode_store(int fd, struct ouichefs_superblock *sb)$/;"	f	typeref:typename:int	file:
+write_superblock	mkfs/mkfs-ouichefs.c	/^static struct ouichefs_superblock *write_superblock(int fd, struct stat *fstats)$/;"	f	typeref:struct:ouichefs_superblock *	file:
