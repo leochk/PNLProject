@@ -1,7 +1,0 @@
-#!/usr/bin/bash
-
-rm -rf $ROOT_OUICHEFS/*
-umount $ROOT_OUICHEFS
-
-rm -r $ROOT_OUICHEFS
-rmmod ~/share/PNLProject/ouichefs.ko
