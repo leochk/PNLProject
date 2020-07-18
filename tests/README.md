@@ -34,3 +34,8 @@ Tests mod_remove_bigger correctness by using sysfs. The inserted module should r
 
 Create 10 directories in a ouichefs partition, and create 1000 random files
 distributed in theses newly created directories.
+
+## test_create_echo
+create 4000 files with a rediraction , at the end the files from 3872 to 4000 will stil existe.
+## test_create_touch
+create 4000 files with a rediraction , at the end the files from 3872 to 4000 will stil existe as dir3.

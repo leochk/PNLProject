@@ -9,16 +9,20 @@ mount -o loop ~/share/PNLProject/mkfs/test.img $ROOT_OUICHEFS
 mkdir $ROOT_OUICHEFS/dir/
 mkdir $ROOT_OUICHEFS/dir/dir2/
 
-for n in {1..100}; do
+# check ouichefs does not remove a directory older than a file
+mkdir $ROOT_OUICHEFS/dir/dir2/dir3
+touch -t 01010101 $ROOT_OUICHEFS/dir/dir2/dir3
+
+# create 4000 random files
+for n in {1..4000}; do
     touch $ROOT_OUICHEFS/dir/dir2/$( printf %03d "$n" ).txt
-    dd if=/dev/urandom of=$ROOT_OUICHEFS/dir/dir2/$( printf %03d "$n" ).txt bs=1M count=$(( ( RANDOM % 4 )  + 1 ));
     sync;
 done
 
 ls $ROOT_OUICHEFS/dir/dir2
 
-#rm -rf $ROOT_OUICHEFS/*
+rm -rf $ROOT_OUICHEFS/*
 umount $ROOT_OUICHEFS
 
-#rm -r $ROOT_OUICHEFS
+rm -r $ROOT_OUICHEFS
 rmmod ~/share/PNLProject/ouichefs.ko

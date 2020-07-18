@@ -9,23 +9,22 @@ mount -o loop ~/share/PNLProject/mkfs/test.img $ROOT_OUICHEFS
 mkdir $ROOT_OUICHEFS/dir/
 mkdir $ROOT_OUICHEFS/dir/dir2/
 
-#001.txt the oldest file
-touch -t 02020202 $ROOT_OUICHEFS/dir/dir2/001.txt
-
 # check ouichefs does not remove a directory older than a file
-mkdir $ROOT_OUICHEFS/dir/dir2/dir3
-touch -t 01010101 $ROOT_OUICHEFS/dir/dir2/dir3
+mkdir $ROOT_OUICHEFS/dir/dir2/Strong
+mkdir $ROOT_OUICHEFS/dir/dir2/Weak
+
 
 # create 4000 random files
 for n in {1..4000}; do
     touch $ROOT_OUICHEFS/dir/dir2/$( printf %03d "$n" ).txt
+    ln  $ROOT_OUICHEFS/dir/dir2/$( printf %03d "$n" ).txt $ROOT_OUICHEFS/dir/dir2/Strong/$( printf %03d "$n" ).txt
+    ln -s $ROOT_OUICHEFS/dir/dir2/$( printf %03d "$n" ).txt $ROOT_OUICHEFS/dir/dir2/Weak/$( printf %03d "$n" ).txt
     sync;
 done
 
-
-echo "`ls $ROOT_OUICHEFS/dir/dir2 -F |grep -v / | wc -l` files in directory"
-((ls $ROOT_OUICHEFS/dir/dir2 | grep 001.txt) && echo "Least recently used file still exists") || echo "Least recently used file removed correctly"
-
+ls $ROOT_OUICHEFS/dir/dir2
+ls $ROOT_OUICHEFS/dir/dir2/Strong
+ls $ROOT_OUICHEFS/dir/dir2/Weak
 
 rm -rf $ROOT_OUICHEFS/*
 umount $ROOT_OUICHEFS
