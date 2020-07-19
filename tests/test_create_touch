@@ -17,7 +17,8 @@ touch -t 01010101 $ROOT_OUICHEFS/dir/dir2/dir3
 for n in {1..4000}; do
     touch $ROOT_OUICHEFS/dir/dir2/$( printf %03d "$n" ).txt
     sync;
-    sleep 1;
+     #to differentiate the date of each file
+    sleep 0.5;
 done
 
 ls $ROOT_OUICHEFS/dir/dir2

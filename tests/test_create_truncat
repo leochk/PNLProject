@@ -8,16 +8,14 @@ mkdir $ROOT_OUICHEFS
 mount -o loop ~/share/PNLProject/mkfs/test.img $ROOT_OUICHEFS
 mkdir $ROOT_OUICHEFS/dir/
 mkdir $ROOT_OUICHEFS/dir/dir2/
-mkdir $ROOT_OUICHEFS/dir/dir2/
 
-# create 130 the same file
-for n in {1..130}; do
-    touch $ROOT_OUICHEFS/dir/dir2/$( printf %03d "1" ).txt
-    echo "$((n*n))" > $ROOT_OUICHEFS/dir/dir2/$( printf "2" ).txt
+# create 3000 with incresing file size
+for n in {1..3000}; do
+    truncate -s $n $ROOT_OUICHEFS/dir/dir2/$( printf %03d "$n" ).txt
     sync;
+    #to differentiate the date of each file
+    sleep 1;
 done
-
-
 
 ls $ROOT_OUICHEFS/dir/dir2
 
@@ -25,4 +23,4 @@ rm -rf $ROOT_OUICHEFS/*
 umount $ROOT_OUICHEFS
 
 rm -r $ROOT_OUICHEFS
-rmmod ~/share/PNLProject/ouichefs.ko    
+rmmod ~/share/PNLProject/ouichefs.ko  

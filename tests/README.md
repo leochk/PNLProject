@@ -36,6 +36,13 @@ Create 10 directories in a ouichefs partition, and create 1000 random files
 distributed in theses newly created directories.
 
 ## test_create_echo
-create 4000 files with a rediraction , at the end the files from 3872 to 4000 will stil existe.
+create 4000 files with a rediraction , at the end the files 128 files will stil exists.
+
 ## test_create_touch
-create 4000 files with a rediraction , at the end the files from 3872 to 4000 will stil existe as dir3.
+create 4000 files with touch function , at end the 128 files will stil exists as dir3.
+
+## test_create_truncat
+create 4000 files with truncat function to give each file a different size (larger at each iteration) 
+
+## test_fileDir_exists
+try to create the same files 130 times and ensure that the VM dont crash in that spécifique case

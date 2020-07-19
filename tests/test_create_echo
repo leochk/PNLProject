@@ -11,8 +11,10 @@ mkdir $ROOT_OUICHEFS/dir/dir2/
 
 # create 4000 random files
 for n in {1..4000}; do
-    echo "$((n*n))" > $ROOT_OUICHEFS/dir/dir2/$( printf "$n" ).txt
+    echo "Teste" > $ROOT_OUICHEFS/dir/dir2/$( printf "$n" ).txt
     sync;
+    #to differentiate the date of each file
+    sleep 0.5;
 done
 
 
