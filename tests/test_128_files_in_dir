@@ -16,6 +16,7 @@ for n in {1..127}; do
     sync;
 done
 
+
 # make 001.txt the oldest file
 touch -t 02020202 $ROOT_OUICHEFS/dir/dir2/001.txt
 
@@ -26,6 +27,9 @@ touch -t 01010101 $ROOT_OUICHEFS/dir/dir2/dir3
 # insert the 129th link : ouichefs should remove 001.txt
 touch $ROOT_OUICHEFS/dir/dir2/129.txt
 
+
+
+echo "`ls $ROOT_OUICHEFS/dir/dir2`"
 echo "`ls $ROOT_OUICHEFS/dir/dir2 -F |grep -v / | wc -l` files in directory"
 ((ls $ROOT_OUICHEFS/dir/dir2 | grep 001.txt) && echo "Least recently used file still exists") || echo "Least recently used file removed correctly"
 

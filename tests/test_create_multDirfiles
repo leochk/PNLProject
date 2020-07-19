@@ -1,0 +1,33 @@
+#!/usr/bin/bash
+
+ROOT_OUICHEFS=/mnt/PNLProject
+
+insmod ~/share/PNLProject/ouichefs.ko
+mkdir $ROOT_OUICHEFS
+
+mount -o loop ~/share/PNLProject/mkfs/test.img $ROOT_OUICHEFS
+mkdir $ROOT_OUICHEFS/dir/
+mkdir $ROOT_OUICHEFS/dir/dir2/
+mkdir $ROOT_OUICHEFS/dir/dir2/dir3/
+mkdir $ROOT_OUICHEFS/dir/dir2/dir4/
+
+# create 4000 files in multiple sub Dir
+for n in {1..4000}; do
+    echo "$((n*n))" > $ROOT_OUICHEFS/dir/dir2/$( printf "$n" ).txt
+    echo "Testing" > $ROOT_OUICHEFS/dir/dir2/dir3/$( printf "$n" ).txt
+    touch $ROOT_OUICHEFS/dir/dir2/dir4/$( printf %03d "$n" ).txt
+    sync;
+    sleep 0.5;
+done
+
+
+
+ls $ROOT_OUICHEFS/dir/dir2
+ls $ROOT_OUICHEFS/dir/dir3
+ls $ROOT_OUICHEFS/dir/dir4
+
+rm -rf $ROOT_OUICHEFS/*
+umount $ROOT_OUICHEFS
+
+rm -r $ROOT_OUICHEFS
+rmmod ~/share/PNLProject/ouichefs.ko
