@@ -46,3 +46,6 @@ create 4000 files with truncat function to give each file a different size (larg
 
 ## test_fileDir_exists
 try to create the same files 130 times and ensure that the VM dont crash in that spécifique case
+
+## test_create_multDirfiles
+create files in the current directory and in two sub directorys
